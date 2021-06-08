@@ -5,10 +5,10 @@ export const register = createAsyncThunk('user/register', async (payload) => {
   //call API to register
   const data = await accountApi.register(payload);
   //save data to local storage
-  localStorage.setItem('token', data.jwt);
-  localStorage.setItem('user', JSON.stringify(data.user));
+  localStorage.setItem('token', data.token);
+  localStorage.setItem('user', JSON.stringify(data));
   //return to user data
-  return data.user;
+  return data;
 });
 
 export const login = createAsyncThunk('user/login', async (payload) => {

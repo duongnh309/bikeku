@@ -46,9 +46,12 @@ function RegisterForm(props) {
   const classes = useStyles();
 
   const schema = yup.object().shape({
-    fullName: yup.string()
+    name: yup.string()
       .required('Please enter your fullname')
       .min(2, 'Name must be larger than 2 characters  '),
+    username: yup.string()
+      .required('Please enter your username')
+      .min(2, 'Username must be larger than 2 characters  '),
     email: yup.string()
       .required('Please enter your email')
       .email('Please input valid email'),
@@ -61,7 +64,8 @@ function RegisterForm(props) {
   });
   const registerForm = useForm({
     defaultValues: {
-      fullName: '',
+      name: '',
+      username: '',
       email: '',
       password: '',
       retypePassword: '',
@@ -93,10 +97,21 @@ function RegisterForm(props) {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <InputFeild
-                  autoComplete="fname"
-                  name="fullName"
-                  id="fullName"
-                  label="Full Name"
+                  autoComplete="name"
+                  name="name"
+                  id="name"
+                  label="Name"
+                  form={registerForm}
+                  autoFocus
+
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <InputFeild
+                  autoComplete="username"
+                  name="username"
+                  id="username"
+                  label="Username"
                   form={registerForm}
                   autoFocus
 
