@@ -49,8 +49,7 @@ function LoginForm(props) {
   const schema = yup.object().shape({
 
     username: yup.string()
-      .required('Please enter your email')
-      .email('Please input valid email'),
+      .required('Please enter your username'),
     password: yup.string()
       .required('Please enter your password'),
   });

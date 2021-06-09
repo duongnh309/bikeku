@@ -19,6 +19,7 @@ function Register(props) {
         try {
             console.log("test value", values);
             //auto set username = email
+            values.username = values.email;
 
             const action = register(values);
             const resultAction = await dispatch(action);

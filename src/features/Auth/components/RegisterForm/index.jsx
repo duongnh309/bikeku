@@ -49,9 +49,9 @@ function RegisterForm(props) {
     name: yup.string()
       .required('Please enter your fullname')
       .min(2, 'Name must be larger than 2 characters  '),
-    username: yup.string()
-      .required('Please enter your username')
-      .min(2, 'Username must be larger than 2 characters  '),
+    // username: yup.string()
+    //   .required('Please enter your username')
+    //   .min(2, 'Username must be larger than 2 characters  '),
     email: yup.string()
       .required('Please enter your email')
       .email('Please input valid email'),
@@ -65,7 +65,7 @@ function RegisterForm(props) {
   const registerForm = useForm({
     defaultValues: {
       name: '',
-      username: '',
+      //username: '',
       email: '',
       password: '',
       retypePassword: '',
@@ -106,7 +106,7 @@ function RegisterForm(props) {
 
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <InputFeild
                   autoComplete="username"
                   name="username"
@@ -116,7 +116,7 @@ function RegisterForm(props) {
                   autoFocus
 
                 />
-              </Grid>
+              </Grid> */}
 
               <Grid item xs={12}>
                 <InputFeild
