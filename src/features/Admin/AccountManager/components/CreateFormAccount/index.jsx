@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Avatar, Button, LinearProgress, Typography } from '@material-ui/core';
+import { Avatar, Button, InputLabel, LinearProgress, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core';
 import CodeIcon from '@material-ui/icons/Code';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -7,73 +7,66 @@ import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import InputFeild from '../../../../../components/form-control/InputFeild';
 import PasswordField from '../../../../../components/form-control/PasswordField';
-import {useDropzone} from 'react-dropzone'
+import { useDropzone } from 'react-dropzone'
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
+}));
 
 CreateFormAccount.propTypes = {
-    onSubmit : PropTypes.func.isRequired,
+    onSubmit: PropTypes.func,
 };
 
 function CreateFormAccount(props) {
+    const classes = useStyles();
     const { onSubmit } = props;
+
     const schema = yup.object().shape({
-        fullName: yup.string()
-            .required('Plss enter you fullName')
+        name: yup.string()
+            .required('Plss enter you Name')
+            .test('Should has two words', 'Please enter at least two words', (values) => {
+                return values.split(' ').length >= 2;
+            })
+        ,
+        userName: yup.string()
+            .required('Plss enter you userName')
             .test('Should has two words', 'Please enter at least two words', (values) => {
                 return values.split(' ').length >= 2;
             })
         ,
         email: yup.string().required('Please enter your email!').email('You have to write email correctly'),
+
         password: yup.string().required().min(6, 'At least 6 characters'),
+        
         retypePassword: yup.string().required('Retype password').oneOf([yup.ref('password')], 'Password does not match'),
-        address : yup.string().required('Plss enter you fullName').min(6, 'At least 6 characters'),
-        phone : yup.string().required(),
     });
-    const form = useForm({
+    const [role,setRole]= useState('User');
+    const regisform = useForm({
         defaultValues: {
-            fullName: '',
-            email: '',
+            name: '',
+            userName: '',
             password: '',
             retypePassword: '',
-            phone :'',
-            role:'',
-            address :'',
+            email: '',
+            role: role,
         },
         resolver: yupResolver(schema),
     });
+
     const solveSubmit = async (values) => {
+        console.log(values);
         if (onSubmit) {
             await onSubmit(values);
-            form.reset();
+            regisform.reset();
         }
     }
-    const { isSubmitting } = form.formState;
-
-    const fileUploadHandler = () => {
-        console.log('Upload');
-    }
-
-    const [files, setFiles] = useState([]);
-
-    const { getRootProps, getInputProps } = useDropzone({
-        accept: "image/*",
-        onDrop: (acceptedFiles) => {
-            setFiles(
-                acceptedFiles.map((file) =>
-                    Object.assign(file, {
-                        preview: URL.createObjectURL(file),
-                    }))
-            )
-        }
-    })
-
-    const images = files.map((file) => (
-        <div key={file.name}>
-            <div>
-                <img src={file.preview} style={{ width: '200px',height:'150px' }} alt="preview" />
-            </div>
-            {console.log(files)}
-        </div>
-    ))
+    const { isSubmitting } = regisform.formState;
     return (
         <div>
             {isSubmitting && <LinearProgress />}
@@ -84,36 +77,36 @@ function CreateFormAccount(props) {
             <Typography component='h3' variant='h5'>
                 Create an account
             </Typography>
-            <form onSubmit={form.handleSubmit(solveSubmit)}>
-                <InputFeild name='fullName' label='FullName' form={form} />
-                <InputFeild name='email' label='Email' form={form} />
-                <InputFeild name='phone' label='Phone' form={form} />
-                <InputFeild name='address' label='Address' form={form} />
-                <InputFeild name='role' label='Role' form={form} />
-                <PasswordField name='password' label='Password' form={form} />
-                <PasswordField name='retypePassword' label='Retype Password' form={form} />
-                <p >Drop image here!</p>
-                <div {...getRootProps()} style={{ width: '210px',height:'160px', borderStyle:'dashed' }}>
-                        <input {...getInputProps()} />
-                    <div>{images}</div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <button onClick={fileUploadHandler}  >
-                    Upload
-                </button>
+
+            <form noValidate onSubmit={regisform.handleSubmit(solveSubmit)}>
+                <InputFeild name='name' label='Name' form={regisform} id='name' />
+                <InputFeild name='userName' label='UserName' form={regisform} id='userName' />
+                <InputFeild name='email' label='Email' form={regisform} id='email' />
+
+                <TextField
+                    label='Role'
+                    select
+                    variant='outlined'
+                    fullWidth
+                    value={role}
+                    form={regisform}
+                    onChange={(e)=>setRole(e.target.value)}
+                >
+                    <MenuItem key='admin' value='Admin'>Admin</MenuItem>
+                    <MenuItem key='saler' value='Saler'>Saler</MenuItem>
+                    <MenuItem key='modifier' value='Modifier'>Modifier</MenuItem>
+                    <MenuItem key='user' value='User'>User</MenuItem>
+                </TextField>
+
+                <PasswordField name='password' label='Password' form={regisform} id='password' />
+                <PasswordField name='retypePassword' label='Retype Password' form={regisform} id='retypePassword' />
                 <br />
                 <br />
                 <Button disabled={isSubmitting} variant="contained" color="primary" disableElevation type='submit' >
                     Create an account
                 </Button>
             </form>
-
         </div>
-
     );
 }
 

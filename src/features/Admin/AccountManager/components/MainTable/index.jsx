@@ -1,41 +1,38 @@
 import { Button, Dialog, DialogContent, DialogContentText } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CreateAccount from '../../pages/CreateAccount';
-
+import getAllAccounts from '../../../../../api/accountApi'
+import accountApi from '../../../../../api/accountApi';
+import PaginationCompnent from '../Pagination';
 AccountManager.propTypes = {
 
 };
 
 function AccountManager(props) {
-    const initialAccounts = [{
-        email: 'vuvietsang10a9@gmail.com',
-        fullName: 'Vu Viet Sang',
-        password: '123456',
-        phoneNum: '0376536924',
-        address: '334',
-        role: 'admin'
 
-    },
-    {
-        email: 'nguyenminhhieu@gmail.com',
-        fullName: 'Nguyen Minh Hieu',
-        password: '123456',
-        phoneNum: '0376536924',
-        address: '334',
-        role: 'admin'
-
-    },
-    {
-        email: 'nguyenkhanhduy@gmail.com',
-        fullName: 'Nguyen Khanh Duy',
-        password: '123456',
-        phoneNum: '0376536924',
-        address: '334',
-        role: 'admin'
-
-    }]
-    const [accounts, setAccounts] = useState(initialAccounts);
+    const [accounts, setAccounts] = useState([]);
     const [open, setOpen] = useState(false);
+
+    const [filter, setFilter] = useState({
+        pageNum: 1,
+        pageSize: 10,
+        totalPage: 1,
+    })
+
+    useEffect(async () => {
+        const respone = await accountApi.getAllAccounts(filter.pageNum, filter.pageSize);
+        setFilter({ ...filter, totalPage: Math.ceil(respone.total / filter.pageSize) });
+    }, [])
+
+
+    const initialAccounts = async () => {
+        const respone = await accountApi.getAllAccounts(filter.pageNum, filter.pageSize);
+        setAccounts(respone.data);
+    }
+
+    useEffect(() => {
+        initialAccounts();
+    }, [filter])
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -44,6 +41,7 @@ function AccountManager(props) {
     const handleClose = () => {
         setOpen(false);
     };
+
 
     const handleDeleteClick = (email) => {
         const newAccount = [...accounts];
@@ -97,26 +95,20 @@ function AccountManager(props) {
                                             <thead>
                                                 <tr>
                                                     <th>Email</th>
+                                                    <th>UserName</th>
                                                     <th>Full Name</th>
-                                                    <th>PhoneNum(s)</th>
-                                                    <th>Address </th>
                                                     <th>Role</th>
-                                                    <th>Password</th>
                                                     <th>Delete</th>
                                                     <th>Update</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {console.log(accounts)}
-                                                {accounts.map(account => (
+                                                {accounts && accounts.map(account => (
                                                     <tr className="odd gradeX" key={accounts.email}>
                                                         <td>{account.email}</td>
-                                                        <td>{account.fullName}</td>
-                                                        <td>{account.phoneNum}</td>
-                                                        <td>{account.address}</td>
-                                                        <td>{account.role}</td>
-                                                        <td>{account.password}</td>
-
+                                                        <td>{account.username}</td>
+                                                        <td>{account.name}</td>
+                                                        <td>{account.roles[0]}</td>
                                                         <td><button onClick={() => handleDeleteClick(account.email)} className="btn btn-danger"><i className="fa fa-pencil"></i> Delete</button></td>
                                                         <td><a href={`/admin/accounts/update?email=${account.email}`} className="btn btn-primary"><i className="fa fa-edit "></i> Edit</a></td>
                                                     </tr>
@@ -124,6 +116,7 @@ function AccountManager(props) {
                                                 }
                                             </tbody>
                                         </table>
+                                        <PaginationCompnent filter={filter} setFilter={setFilter} />
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +126,6 @@ function AccountManager(props) {
                 </div>
                 {/* /. PAGE INNER  */}
             </div>
-
         </div>
     );
 }

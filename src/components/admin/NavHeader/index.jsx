@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 
 NavHeader.propTypes = {
 
 };
 
 function NavHeader(props) {
+  const history = useHistory();
+
+   const handleLogout = ()=>{
+    localStorage.removeItem('user');
+    history.replace("/");
+   }
   return (
     <div style={{ background: '#4D4D4D' }}>
       <div>
@@ -32,7 +39,7 @@ function NavHeader(props) {
           </button>
           <a className="navbar-brand" href="index.html" style={{ margin: '0' }}>Binary admin</a>
         </div>
-        <div style={{ color: 'white', padding: '15px 50px 5px 50px', float: 'right', fontSize: '16px' }}> Last access : 30 May 2014 &nbsp; <a href="#" className="btn btn-danger square-btn-adjust">Logout</a> </div>
+        <div style={{ color: 'white', padding: '15px 50px 5px 50px', float: 'right', fontSize: '16px' }}> Last access : 30 May 2014 &nbsp; <a href="/" className="btn btn-danger square-btn-adjust" onClick={handleLogout} >Logout</a> </div>
       </nav>
     </div>
   );

@@ -11,9 +11,11 @@ const accountApi = {
         const url = `Users/Authenticate`;
         return axiosClient.post(url, data);
     },
-
+    async getAllAccounts(pageNumer,pagesize) {
+        const url = `/Users?PageNumber=${pageNumer}&PageSize=${pagesize}`;
+        const data =  await axiosClient.get(url);
+        return data;
+    }
     
 };
-
-
 export default accountApi;

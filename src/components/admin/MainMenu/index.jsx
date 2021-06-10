@@ -10,12 +10,14 @@ MainMenu.propTypes = {
 function MainMenu(props) {
     const location = useLocation();
     const tab = location.pathname;
+    const user = JSON.parse(localStorage.getItem('user'));
     return (
         <nav className="navbar-default navbar-side" role="navigation">
           <div className="sidebar-collapse">
             <ul className="nav" id="main-menu" style={{display:'block'}}>
               <li className="text-center">
                 <img src="/assets/img/find_user.png" className="user-image img-responsive" />
+                <h2 style={{color:'white'}}>{user&& user.name}</h2>
               </li>
               <li>
                 <a className={classNames({

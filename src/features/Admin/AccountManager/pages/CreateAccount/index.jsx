@@ -3,7 +3,7 @@ import React from 'react';
 import CreateFormAccount from '../../components/CreateFormAccount';
 
 CreateAccount.propTypes = {
-    onclose: PropTypes.func.isRequired,
+    
 };
 function CreateAccount() {
 
@@ -29,6 +29,7 @@ function CreateAccount() {
     // }
     const handleSubmit = (values) => {
         console.log(values);
+        console.log('gigigigii');
     }
     return (
         <div>
