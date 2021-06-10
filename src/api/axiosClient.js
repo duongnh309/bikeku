@@ -34,12 +34,13 @@ function (error) {
     const {config, status, data} = error.response;
      const URLS =['Users/Register', 'Users/Authenticate'];
     if(URLS.includes(config.url) && status === 400){
-        const errorList = data.data || [];
-        const firstError = errorList.length > 0 ? errorList[0] : {};
-        const messageList = firstError.messages || [];
-        const firstMessage = messageList.length > 0 ? messageList[0] : {};
 
-        throw new Error(firstMessage.message);
+        if(data.message){
+            throw new Error(data.message);
+        }
+        else{
+            throw new Error(data);
+        }
     }
     return Promise.reject(error);
 });
