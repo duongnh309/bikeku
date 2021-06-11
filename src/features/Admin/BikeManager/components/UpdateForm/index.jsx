@@ -23,6 +23,7 @@ function UpdateForm({ updateBike, onSubmit }) {
         maker: yup.string().required('Please enter the maker!'),
         price: yup.number().min(0),
         quantity: yup.number().min(0).integer(),
+        minQuantity: yup.number().min(0).integer(),
         category: yup.string().required('Please enter your category!'),
     });
 
@@ -33,15 +34,17 @@ function UpdateForm({ updateBike, onSubmit }) {
             description: updateBike.description||'',
             price: updateBike.price||'',
             quantity: updateBike.quantity||'',
+            minQuantity: updateBike.minQuantity||'',
             category: updateBike.category||'',
+            imageUrl: updateBike.imgUrl || '',
         },
         resolver: yupResolver(schema),
     });
     
 
-    const handleSubmit = (Values) => {
+    const handleSubmit = (values) => {
         if (onSubmit) {
-            onSubmit(Values);
+            onSubmit(values);
         }
 
         form.reset();
@@ -102,7 +105,9 @@ function UpdateForm({ updateBike, onSubmit }) {
                 <InputFeild name='description' label='Description' form={form} />
                 <InputFeild name='price' label='Price' form={form} />
                 <InputFeild name='quantity' label='Quantity' form={form} />
+                <InputFeild name='minQuantity' label='Min Quantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
+                <InputFeild name='imgUrl' label='Image' form={form} />
 
                 <p >Drop image here!</p>
                 <div {...getRootProps()} style={isDragActive ? {...dropzoneStyles, ...dropzoneActive}: dropzoneStyles}>

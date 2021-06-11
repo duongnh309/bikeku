@@ -1,8 +1,7 @@
-import { Button, Dialog, DialogContent, DialogContentText } from '@material-ui/core';
+import { Button, Dialog, DialogContent } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import CreateAccount from '../../pages/CreateAccount';
-import getAllAccounts from '../../../../../api/accountApi'
 import accountApi from '../../../../../api/accountApi';
+import CreateAccount from '../../pages/CreateAccount';
 import PaginationCompnent from '../Pagination';
 AccountManager.propTypes = {
 

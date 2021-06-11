@@ -1,6 +1,6 @@
 
 import { axiosClient } from "./axiosClient";
-// Sang mat loz
+
 const productApi = {
     async getAll(filter) {
         var url = '/Products';
@@ -39,6 +39,13 @@ const productApi = {
     async get(id) {
         const url = `/Products/${id}`;
         return (await axiosClient.get(url));
+    },
+
+
+    async update(id,data){
+        const url = '/Products/Update';
+        const neededId = {id: id};
+        return axiosClient.put(url,data,{params: neededId});
     },
 
 
