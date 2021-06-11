@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import CreateAccount from '../../pages/CreateAccount';
 import getAllAccounts from '../../../../../api/accountApi'
 import accountApi from '../../../../../api/accountApi';
-import PaginationCompnent from '../../../../../components/Pagination';
+import PaginationCompnent from '../Pagination';
 AccountManager.propTypes = {
 
 };
