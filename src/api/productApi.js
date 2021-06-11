@@ -47,8 +47,8 @@ const productApi = {
 
 
     async get(id) {
-        const url = `/api/products/${id}`;
-        return (await axiosClient.get(url)).data;
+        const url = `/Products/${id}`;
+        return (await axiosClient.get(url));
     },
 
 
