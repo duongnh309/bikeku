@@ -39,7 +39,6 @@ function CreateForm(props) {
     });
 
     const handleSubmit = (Values) => {
-        console.log("TODO FORM: ", Values);
         const { onSubmit } = props;
         if (onSubmit) {
             onSubmit(Values);
