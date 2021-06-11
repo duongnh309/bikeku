@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+import productApi from '../../../../../api/productApi';
 import CreateForm from '../../components/CreateForm';
 
 CreateABike.propTypes = {
@@ -6,9 +8,16 @@ CreateABike.propTypes = {
 };
 
 function CreateABike(props) {
-
+    const [imageUrl, setImageUrl] = useState('');
     const handleSubmit = (values) => {
-        console.log('Form submit: ', values);
+        const newValues = { ...values, imageUrl: imageUrl }
+        try {
+            productApi.add(newValues);
+            console.log('GOODJOB');
+        } catch (error) {
+            console.log('ERROR');
+        }
+
     }
 
     //sang
@@ -16,7 +25,6 @@ function CreateABike(props) {
         <>
             <div id="page-wrapper">
                 <div id="page-inner">
-
                     {/* /. ROW  */}
                     <div className="row">
                         <div className="col-md-12">
@@ -25,10 +33,10 @@ function CreateABike(props) {
                             <div className="panel panel-default ">
                                 <div className="panel-heading">
                                     Create a Bike
-                        </div>
+                                </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">
-                                        <CreateForm onSubmit={handleSubmit} />
+                                        <CreateForm setImageUrl={setImageUrl} onSubmit={handleSubmit} />
                                     </div>
                                     {/*End Advanced Tables */}
                                 </div>

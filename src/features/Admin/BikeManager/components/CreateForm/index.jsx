@@ -15,6 +15,7 @@ CreateForm.propTypes = {
 };
 
 function CreateForm(props) {
+    const {setImageUrl} = props;
     const schema = yup.object().shape({
         name: yup.string().required('Please enter your name!'),
         maker: yup.string().required('Please enter the maker!'),
@@ -38,24 +39,22 @@ function CreateForm(props) {
     });
 
     const handleSubmit = (Values) => {
-        console.log(Values);
         const { onSubmit } = props;
         if (onSubmit) {
             onSubmit(Values);
         }
-
         form.reset();
     }
 
     const [image, setImage] = useState('');
-    console.log(image);
     const onChangeImg = (event)=>{
         if (event.target.files && event.target.files[0]) {
             let img = event.target.files[0];
             setImage(URL.createObjectURL(img));
+            setImageUrl(URL.createObjectURL(img))
           }
-    }
 
+    }
     const {register} = form;
     return (
         <div>
@@ -74,7 +73,7 @@ function CreateForm(props) {
                 <InputFeild name='minQuantity' label='MinQuantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
                 <Typography>Select Img : </Typography>
-                <input  {...register('imageUrl')} type="file" id="my-img" name="ImageStyle" onChange={onChangeImg} />
+                <input  {...register('image')} type="file" id="my-img" name="ImageStyle" onChange={onChangeImg} />
                 <img src={image} style={{width:'180px',height:'100px'}} />
                 <br/>
                 <br/>
