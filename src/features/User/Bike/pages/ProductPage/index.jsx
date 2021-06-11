@@ -5,7 +5,6 @@ import productApi from '../../../../../api/productApi';
 import Hero from '../../../../../components/headers/Hero';
 import { increase } from '../../../../User/Checkout/counterSlice';
 import DefaultBikes from '../../components/DefaultBikes';
-import Pagination from '../../components/Pagination';
 import SingleChoiceFilter from '../../components/SingleChoiceFilter';
 
 ProductPage.propTypes = {
@@ -62,38 +61,9 @@ function ProductPage({ }) {
 
   const fetchDataFormApi = async () => {
 
-    const response = await productApi.getAll(filterForApi);
+    const response = await productApi.getAll();
 
-    setBikes(getDataFormPagination(response.data, pagination._page));
   }
-
-  function getDataFormPagination(bikesFromApi, page) {
-
-    const _start = page <= 1
-      ? 0
-      : (page - 1) * (pagination._limit || 9);
-
-    //kq = tong so pages
-    const totalBikes = pagination.totalBikes === 0 ? 100 : pagination.totalBikes;
-    const newBikesList = [];
-    for (let index = _start; index < _start + pagination._limit && index < totalBikes; index++) {
-      newBikesList.push(bikesFromApi[index]);
-    }
-
-
-    return newBikesList;
-  }
-
-  const handlePage = (newPage) => {
-    setPagination({
-      ...pagination,
-      _page: newPage,
-    });
-    setBikes(getDataFormPagination(bikesFromApi, newPage));
-  }
-
-
-
   return (
     <div>
       <Hero title="Shop" />
@@ -151,7 +121,6 @@ function ProductPage({ }) {
                 <DefaultBikes defaultBikes={bikes} addToCart={HandleAddToCart} />
 
               </div>
-              <Pagination pagination={pagination} action={handlePage} />
 
             </div>
           </div>
