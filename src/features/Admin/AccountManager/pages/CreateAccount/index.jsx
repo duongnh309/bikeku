@@ -20,7 +20,6 @@ function CreateAccount() {
             enqueueSnackbar(error.message, { variant: 'error' });
         }
     }
-
     return (
         <div>
             <CreateFormAccount onSubmit={handleSubmit} />
