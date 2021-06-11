@@ -1,4 +1,5 @@
 
+import { PublicTwoTone } from "@material-ui/icons";
 import { axiosClient } from "./axiosClient";
 
 const productApi = {
@@ -40,6 +41,12 @@ const productApi = {
         const url = `/Products/${id}`;
         return (await axiosClient.get(url));
     },
+
+    async update(id,data){
+        const url = '/Products/Update';
+        const neededId = {id: id};
+        return axiosClient.put(url,data,{params: neededId});
+    }
 
 
     async update(id,data){
