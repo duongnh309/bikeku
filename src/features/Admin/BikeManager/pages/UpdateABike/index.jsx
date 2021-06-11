@@ -26,7 +26,6 @@ function UpdateABike() {
 
 
     const handleSubmit = async (values) => {
-        console.log(values);
         try {
            productApi.update(bikeId, values);
            
