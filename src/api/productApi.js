@@ -42,12 +42,6 @@ const productApi = {
         return (await axiosClient.get(url));
     },
 
-    async update(id,data){
-        const url = '/Products/Update';
-        const neededId = {id: id};
-        return axiosClient.put(url,data,{params: neededId});
-    }
-
 
     async update(id,data){
         const url = '/Products/Update';
