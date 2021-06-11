@@ -25,7 +25,6 @@ function UpdateForm({ updateBike, onSubmit }) {
         quantity: yup.number().min(0).integer(),
         minQuantity: yup.number().min(0).integer(),
         category: yup.string().required('Please enter your category!'),
-        imageUrl: yup.string().required('Please input image url!')
     });
 
     const form = useForm({
@@ -37,14 +36,13 @@ function UpdateForm({ updateBike, onSubmit }) {
             quantity: updateBike.quantity||'',
             minQuantity: updateBike.minQuantity||'',
             category: updateBike.category||'',
-            imageUrl: updateBike.imageUrl || '',
         },
         resolver: yupResolver(schema),
     });
     
 
     const handleSubmit = (values) => {
-        values.imageUrl = images;
+        values.imageUrl = files[0].preview;
         if (onSubmit) {
             onSubmit(values);
         }
@@ -109,7 +107,6 @@ function UpdateForm({ updateBike, onSubmit }) {
                 <InputFeild name='quantity' label='Quantity' form={form} />
                 <InputFeild name='minQuantity' label='Min Quantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
-                <InputFeild name='imageUrl' label='Image' form={form} />
 
                 <p >Drop image here!</p>
                 <div {...getRootProps()} style={isDragActive ? {...dropzoneStyles, ...dropzoneActive}: dropzoneStyles}>

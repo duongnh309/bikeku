@@ -26,9 +26,10 @@ function UpdateABike() {
 
 
     const handleSubmit = async (values) => {
-        console.log('Form submit: ', values);
+        console.log(values);
         try {
            productApi.update(bikeId, values);
+           
             enqueueSnackbar('Update successfully', { variant: 'success' });
         } catch (error) {
             enqueueSnackbar(error.message, { variant: 'error' });

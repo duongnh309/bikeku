@@ -44,9 +44,10 @@ const productApi = {
 
 
     async update(id,data){
+        console.log(data);
         const url = '/Products/Update';
         const neededId = {id: id};
-        return axiosClient.put(url,data,{params: neededId});
+        return axiosClient.put(url,{status:'ok'},{params: neededId,data:data});
     },
 
 
