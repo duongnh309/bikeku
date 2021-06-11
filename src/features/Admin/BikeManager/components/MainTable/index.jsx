@@ -1,8 +1,7 @@
-import { Pagination } from '@material-ui/lab';
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import productApi from '../../../../../api/productApi';
+import Pagination from '../../../../../components/Pagination'
 
 
 MainTable.propTypes = {
@@ -16,7 +15,7 @@ MainTable.defaultProps = {
 function MainTable() {
 
     const [filter, setFilter] = useState({ PageSize: 10, PageNumber: 1 });
-    const [pagination, setPagination] = useState({total:50,page:1,PageSize:10});
+    const [pagination, setPagination] = useState({ total: 50, page: 1, PageSize: 10 });
 
     useEffect(() => {
         fetchDataFormApi();
@@ -28,7 +27,7 @@ function MainTable() {
         const response = await productApi.getAll(filter);
         const bikeFromApi = response.data;
         setBikes(bikeFromApi);
-        setPagination()
+        setPagination(response.pagination)
     }//fetch data base on filter
 
     //mac dinh la pagesize 
@@ -43,7 +42,10 @@ function MainTable() {
     const handleSearch = (value) => {
         const searchValue = value.search;
         const searchBy = value.searchBy;
-        setFilter({ ...filter, value: searchValue, searchBy });
+        const newFilter = { ...filter, value: searchValue, searchBy };
+        delete newFilter.priceRange;
+        delete newFilter.change;
+        setFilter(newFilter);
     }
 
 
@@ -54,9 +56,12 @@ function MainTable() {
     }
 
     //Xu ly search theo price
-    const handlePirce = (e) =>{
+    const handlePirce = (e) => {
         const priceRange = e.target[e.target.selectedIndex].getAttribute('value');
-        setFilter({ ...filter, priceRange});
+        const newFilter = { ...filter, priceRange };
+        delete newFilter.searchBy;
+        delete newFilter.value;
+        setFilter(newFilter);
     }
 
 
@@ -66,7 +71,7 @@ function MainTable() {
                 {/* Advanced Tables */}
                 <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
                     <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
-                                    Create A New Bike
+                    Create A New Bike
                 </a>
                 <div className="panel panel-default ">
                     <div className="panel-heading">
@@ -166,7 +171,7 @@ function MainTable() {
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-                                    
+                                        <Pagination filter={filter} pagination={pagination} setFilter={setFilter} />
                                     </div>
                                 </div>
                             </div>

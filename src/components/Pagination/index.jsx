@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
-import PropTypes from 'prop-types';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,16 +13,17 @@ const useStyles = makeStyles((theme) => ({
 PaginationCompnent.propTypes = {
 
 };
-function PaginationCompnent({ filter,setFilter }) {
+function PaginationCompnent({ pagination,setFilter,filter }) {
 
+    const totalPages = Math.ceil(pagination.total/pagination.PageSize);
     const handleOnchange=(e,page)=>{
-        setFilter({...filter,pageNum : page})
+        setFilter({...filter,PageNumber : page})
     }
 
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Pagination style={{float:'right'}} shape="rounded"  count={filter.totalPage} color="primary" onChange={handleOnchange} />
+            <Pagination style={{float:'right'}} shape="rounded"  count={totalPages} color="primary" onChange={handleOnchange} />
         </div>
     );
    

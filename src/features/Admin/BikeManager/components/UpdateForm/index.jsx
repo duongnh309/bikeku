@@ -13,7 +13,7 @@ UpdateForm.propTypes = {
     onSubmit: PropTypes.func,
 };
 
-function UpdateForm({ updateBike }) {
+function UpdateForm({ updateBike, onSubmit }) {
     
     const schema = yup.object().shape({
         name: yup.string().required('Please enter your name!')
@@ -40,8 +40,7 @@ function UpdateForm({ updateBike }) {
     
 
     const handleSubmit = (Values) => {
-        // console.log("TODO FORM: ", Values);
-        const { onSubmit } = updateBike;
+        console.log("TODO FORM: ", Values);
         if (onSubmit) {
             onSubmit(Values);
         }
