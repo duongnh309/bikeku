@@ -14,11 +14,6 @@ UpdateForm.propTypes = {
 };
 
 function UpdateForm({ updateBike }) {
-
-    useEffect(()=>{
-        console.log('cc');
-        console.log(updateBike);
-    })
     
     const schema = yup.object().shape({
         name: yup.string().required('Please enter your name!')

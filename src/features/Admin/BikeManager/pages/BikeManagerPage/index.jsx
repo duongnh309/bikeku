@@ -13,21 +13,7 @@ BikeManagerPage.propTypes = {
 
 function BikeManagerPage(props) {
 
-  
-
-  useEffect(() => {
-    fetchDataFormApi();
-  }, []);
-  const [bikes, setBikes] = useState([]);
-  const fetchDataFormApi = async () => {
-    const response = await productApi.getAll();
-    const bikeFromApi = response.data;
-    setBikes(bikeFromApi);
-  }
-
-  const deleteABike = (id) => {
-    console.log(id);
-  }
+  const userName = JSON.parse(localStorage.getItem('user')).name;
 
   //(_) SignalR
   // const {enqueueSnackbar,closeSnackbar} = useSnackbar();
@@ -49,12 +35,12 @@ function BikeManagerPage(props) {
           <div className="row">
             <div className="col-md-12">
               <h2>Bike Manager</h2>
-              <h5>Welcome Hieu , Love to see you back. </h5>
+              <h5>Welcome {userName} , Love to see you back. </h5>
             </div>
           </div>
           <hr></hr>
           {/* /. ROW  */}
-          <MainTable bikes={bikes} deleteABike={deleteABike} />
+          <MainTable />
         </div>
       </div>
     </div>
