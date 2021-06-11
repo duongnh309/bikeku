@@ -16,14 +16,14 @@ PaginationCompnent.propTypes = {
 };
 function PaginationCompnent({ filter,setFilter }) {
 
-    const handleOnchange=(page)=>{
-        console.log(page);
+    const handleOnchange=(e,page)=>{
         setFilter({...filter,pageNum : page})
     }
+
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Pagination hideNextButton hidePrevButton  count={filter.totalPage} color="primary" onChange={(e)=> handleOnchange(e.target.textContent)} />
+            <Pagination style={{float:'right'}} shape="rounded"  count={filter.totalPage} color="primary" onChange={handleOnchange} />
         </div>
     );
    

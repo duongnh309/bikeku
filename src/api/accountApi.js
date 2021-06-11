@@ -15,7 +15,13 @@ const accountApi = {
         const url = `/Users?PageNumber=${pageNumer}&PageSize=${pagesize}`;
         const data =  await axiosClient.get(url);
         return data;
-    }
+    },
+    async registerByAdmin(data) {
+        const url = '/Admin/Users/Register';
+        return  await axiosClient.post(url,data);
+    },
+    
+
     
 };
 export default accountApi;

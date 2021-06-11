@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import CreateAccount from '../../pages/CreateAccount';
 import getAllAccounts from '../../../../../api/accountApi'
 import accountApi from '../../../../../api/accountApi';
-import PaginationCompnent from '../Pagination';
+import PaginationCompnent from '../../../../../components/Pagination';
 AccountManager.propTypes = {
 
 };
@@ -15,19 +15,19 @@ function AccountManager(props) {
 
     const [filter, setFilter] = useState({
         pageNum: 1,
-        pageSize: 10,
+        pageSize: 1,
         totalPage: 1,
     })
 
     useEffect(async () => {
-        const respone = await accountApi.getAllAccounts(filter.pageNum, filter.pageSize);
-        setFilter({ ...filter, totalPage: Math.ceil(respone.total / filter.pageSize) });
+        const response = await accountApi.getAllAccounts(filter.pageNum, filter.pageSize);
+
+        setFilter({ ...filter, totalPage: Math.ceil(response.total / filter.pageSize) });
     }, [])
 
-
     const initialAccounts = async () => {
-        const respone = await accountApi.getAllAccounts(filter.pageNum, filter.pageSize);
-        setAccounts(respone.data);
+        const response = await accountApi.getAllAccounts(filter.pageNum, filter.pageSize);
+        setAccounts(response.data);
     }
 
     useEffect(() => {
@@ -58,9 +58,7 @@ function AccountManager(props) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
                         <CreateAccount />
-                    </DialogContentText>
                 </DialogContent>
             </Dialog>
 

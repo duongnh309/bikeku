@@ -8,6 +8,7 @@ import * as yup from "yup";
 import InputFeild from '../../../../../components/form-control/InputFeild';
 import PasswordField from '../../../../../components/form-control/PasswordField';
 import { useDropzone } from 'react-dropzone'
+import InputField from '../../../../../components/form-control/InputFeild';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -30,15 +31,11 @@ function CreateFormAccount(props) {
     const schema = yup.object().shape({
         name: yup.string()
             .required('Plss enter you Name')
-            .test('Should has two words', 'Please enter at least two words', (values) => {
-                return values.split(' ').length >= 2;
-            })
+            
         ,
         userName: yup.string()
             .required('Plss enter you userName')
-            .test('Should has two words', 'Please enter at least two words', (values) => {
-                return values.split(' ').length >= 2;
-            })
+            
         ,
         email: yup.string().required('Please enter your email!').email('You have to write email correctly'),
 
@@ -47,6 +44,7 @@ function CreateFormAccount(props) {
         retypePassword: yup.string().required('Retype password').oneOf([yup.ref('password')], 'Password does not match'),
     });
     const [role,setRole]= useState('User');
+
     const regisform = useForm({
         defaultValues: {
             name: '',
@@ -60,13 +58,13 @@ function CreateFormAccount(props) {
     });
 
     const solveSubmit = async (values) => {
-        console.log(values);
         if (onSubmit) {
             await onSubmit(values);
             regisform.reset();
         }
     }
     const { isSubmitting } = regisform.formState;
+    const {register} = regisform;
     return (
         <div>
             {isSubmitting && <LinearProgress />}
@@ -79,9 +77,9 @@ function CreateFormAccount(props) {
             </Typography>
 
             <form noValidate onSubmit={regisform.handleSubmit(solveSubmit)}>
-                <InputFeild name='name' label='Name' form={regisform} id='name' />
-                <InputFeild name='userName' label='UserName' form={regisform} id='userName' />
-                <InputFeild name='email' label='Email' form={regisform} id='email' />
+                <InputField name='name' label='Name' form={regisform} id='name' />
+                <InputField name='userName' label='UserName' form={regisform} id='userName' />
+                <InputField name='email' label='Email' form={regisform} id='email' />
 
                 <TextField
                     label='Role'
@@ -89,7 +87,7 @@ function CreateFormAccount(props) {
                     variant='outlined'
                     fullWidth
                     value={role}
-                    form={regisform}
+                    {...register('roletmp')}
                     onChange={(e)=>setRole(e.target.value)}
                 >
                     <MenuItem key='admin' value='Admin'>Admin</MenuItem>
