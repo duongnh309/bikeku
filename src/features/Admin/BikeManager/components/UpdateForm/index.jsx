@@ -23,7 +23,9 @@ function UpdateForm({ updateBike, onSubmit }) {
         maker: yup.string().required('Please enter the maker!'),
         price: yup.number().min(0),
         quantity: yup.number().min(0).integer(),
+        minQuantity: yup.number().min(0).integer(),
         category: yup.string().required('Please enter your category!'),
+        imageUrl: yup.string().required('Please input image url!')
     });
 
     const form = useForm({
@@ -33,13 +35,16 @@ function UpdateForm({ updateBike, onSubmit }) {
             description: updateBike.description||'',
             price: updateBike.price||'',
             quantity: updateBike.quantity||'',
+            minQuantity: updateBike.minQuantity||'',
             category: updateBike.category||'',
+            imageUrl: updateBike.imageUrl
         },
         resolver: yupResolver(schema),
     });
     
 
     const handleSubmit = (Values) => {
+        Values.imageUrl = images;
         if (onSubmit) {
             onSubmit(Values);
         }
@@ -81,7 +86,7 @@ function UpdateForm({ updateBike, onSubmit }) {
             <div>
                 <img src={file.preview} style={{ width: '200px',height:'150px' }} alt="preview" />
             </div>
-            {console.log(files)}
+            
         </div>
     ))
 
@@ -102,6 +107,7 @@ function UpdateForm({ updateBike, onSubmit }) {
                 <InputFeild name='description' label='Description' form={form} />
                 <InputFeild name='price' label='Price' form={form} />
                 <InputFeild name='quantity' label='Quantity' form={form} />
+                <InputFeild name='minQuantity' label='Min Quantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
 
                 <p >Drop image here!</p>
