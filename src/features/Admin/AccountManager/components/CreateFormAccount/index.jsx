@@ -1,14 +1,12 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Avatar, Button, InputLabel, LinearProgress, makeStyles, MenuItem, Select, TextField, Typography } from '@material-ui/core';
+import { Avatar, Button, LinearProgress, makeStyles, MenuItem, TextField, Typography } from '@material-ui/core';
 import CodeIcon from '@material-ui/icons/Code';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
-import InputFeild from '../../../../../components/form-control/InputFeild';
-import PasswordField from '../../../../../components/form-control/PasswordField';
-import { useDropzone } from 'react-dropzone'
 import InputField from '../../../../../components/form-control/InputFeild';
+import PasswordField from '../../../../../components/form-control/PasswordField';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {

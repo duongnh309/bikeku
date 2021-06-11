@@ -156,7 +156,7 @@ function MainTable() {
                                             <td>{bike.category}</td>
                                             <td>{bike.createDate}</td>
                                             <td><button onClick={() => handleDelete(bike.id)} className="btn btn-danger"><i className="fa fa-pencil"></i> Delete</button></td>
-                                            <td><a href={`/admin/bikes/update?id=${bike.id}`} className="btn btn-primary"><i className="fa fa-edit "></i> Edit</a>
+                                            <td><a href={`/admin/bikes/update?id=${bike.id}`} className="btn btn-primary"><i className="fa fa-edit "></i> Update</a>
 
                                             </td>
                                         </tr>

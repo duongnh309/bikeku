@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 import productApi from '../../../../../api/productApi';
 import UpdateForm from '../../components/UpdateForm';
+import { useSnackbar } from 'notistack';
 
 UpdateABike.propTypes = {
 
@@ -14,6 +15,7 @@ function UpdateABike() {
     const params = queryString.parse(location.search);
     const bikeId = params.id;
     const [bike,setBike] = useState({});
+    const { enqueueSnackbar } = useSnackbar();
     
     useEffect(()=>{
         const getBike = async ()=> {
@@ -23,8 +25,14 @@ function UpdateABike() {
     },[])
 
 
-    const handleSubmit = (values) => {
+    const handleSubmit = async (values) => {
         console.log('Form submit: ', values);
+        try {
+           productApi.update(bikeId, values);
+            enqueueSnackbar('Update successfully', { variant: 'success' });
+        } catch (error) {
+            enqueueSnackbar(error.message, { variant: 'error' });
+        }
     }
 
 
