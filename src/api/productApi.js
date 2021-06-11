@@ -1,6 +1,6 @@
 
 import { axiosClient } from "./axiosClient";
-
+// Sang mat loz
 const productApi = {
     async getAll(filter) {
         var url = '/Products';
