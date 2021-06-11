@@ -13,6 +13,7 @@ import AboutUs from './components/pages/AboutUs';
 import HomePage from './components/pages/HomePage';
 import AccountManagerFeature from './features/Admin/AccountManager';
 import BikeManagerFeature from './features/Admin/BikeManager';
+import OrderManegerFeature from './features/Admin/OrderManager';
 import BikesFeature from './features/User/Bike';
 import CheckoutFeature from './features/User/Checkout';
 // import { NotiProvider } from './NotiHubContext';
@@ -62,6 +63,7 @@ function App() {
                 <Switch>
                   <Route path="/admin/bikes" component={BikeManagerFeature}></Route>
                   <Route path="/admin/accounts" component={AccountManagerFeature}></Route>
+                  <Route path="/admin/orders" component={OrderManegerFeature}></Route>
                 </Switch>
                 {/* </NotiProvider> */}
               </div>

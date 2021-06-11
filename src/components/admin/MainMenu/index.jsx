@@ -29,6 +29,11 @@ function MainMenu(props) {
                   "active-menu":tab.includes('/admin/accounts')
                 })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</a>
               </li>
+              <li>
+              <a className={classNames({
+                  "active-menu":tab.includes('/admin/orders')
+                })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Orders</a>
+              </li>
 
             </ul>
           </div>
