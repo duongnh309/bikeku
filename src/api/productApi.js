@@ -2,15 +2,7 @@
 import { axiosClient } from "./axiosClient";
 
 const productApi = {
-    //Transform _page to _start
-    // const newParams = { ...params }
-    // newParams._start = !params._page || params._page <= 1
-    //     ? 0 : (params._page - 1) * (params._limit || 50);
-    // //Remove un-needed key
-    // delete newParams._page
-    // //fetch products list +count
     async getAll(filter) {
-        console.log(filter);
         var url = '/Products';
         if (filter.searchBy) {
             if (filter.searchBy === 'Maker') {
@@ -30,8 +22,6 @@ const productApi = {
                 url = `/Products/Price/${min}/${max}`;
             }
         }
-
-
         const response = await (axiosClient.get(url, {
             params: filter
         }));

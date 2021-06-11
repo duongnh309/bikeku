@@ -14,6 +14,7 @@ ProductPage.propTypes = {
 
 function ProductPage({ }) {
   const dispatch = useDispatch();
+  
   const HandleAddToCart = (bike) => {
     if (JSON.parse(localStorage.getItem('cart')) !== null) {
       var cart = JSON.parse(localStorage.getItem('cart'));
@@ -36,27 +37,15 @@ function ProductPage({ }) {
     dispatch(increase());
   };
 
-
-  const defaultFilterForApi = {
-    _start: 0,
-  }
-
-  const defaultPagination = {
-    _page: 1,
-    _limit: 9,
-    totalBikes: 0,
-  }
-
   const form = useForm();
+
   const { register, handleSubmit } = form;
 
-  const [filterForApi, setFilterForApi] = useState(defaultFilterForApi);
-
-  const [pagination, setPagination] = useState(defaultPagination);
-
-  const [bikesFromApi, setbikesFromApi] = useState([]);
-
   const [bikes, setBikes] = useState([]);
+
+  const [filter,setFilter] = useState({
+    
+  });
 
   const handleSearch = (value) => {
     const searchData = value.search;
@@ -74,11 +63,7 @@ function ProductPage({ }) {
   const fetchDataFormApi = async () => {
 
     const response = await productApi.getAll(filterForApi);
-    setbikesFromApi(response.data);
-    setPagination({
-      ...pagination,
-      totalBikes: response.data.length,
-    });
+
     setBikes(getDataFormPagination(response.data, pagination._page));
   }
 
