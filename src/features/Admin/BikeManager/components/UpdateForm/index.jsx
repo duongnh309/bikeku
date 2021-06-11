@@ -2,11 +2,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
 import InputFeild from '../../../../../components/form-control/InputFeild';
-import {useDropzone} from 'react-dropzone'
 
 
 UpdateForm.propTypes = {
@@ -23,6 +23,7 @@ function UpdateForm({ updateBike, onSubmit }) {
         maker: yup.string().required('Please enter the maker!'),
         price: yup.number().min(0),
         quantity: yup.number().min(0).integer(),
+        minQuantity: yup.number().min(0).integer(),
         category: yup.string().required('Please enter your category!'),
     });
 
@@ -33,15 +34,17 @@ function UpdateForm({ updateBike, onSubmit }) {
             description: updateBike.description||'',
             price: updateBike.price||'',
             quantity: updateBike.quantity||'',
+            minQuantity: updateBike.minQuantity||'',
             category: updateBike.category||'',
         },
         resolver: yupResolver(schema),
     });
     
 
-    const handleSubmit = (Values) => {
+    const handleSubmit = (values) => {
+        values.imageUrl = files[0].preview;
         if (onSubmit) {
-            onSubmit(Values);
+            onSubmit(values);
         }
 
         form.reset();
@@ -81,7 +84,7 @@ function UpdateForm({ updateBike, onSubmit }) {
             <div>
                 <img src={file.preview} style={{ width: '200px',height:'150px' }} alt="preview" />
             </div>
-            {console.log(files)}
+            
         </div>
     ))
 
@@ -102,6 +105,7 @@ function UpdateForm({ updateBike, onSubmit }) {
                 <InputFeild name='description' label='Description' form={form} />
                 <InputFeild name='price' label='Price' form={form} />
                 <InputFeild name='quantity' label='Quantity' form={form} />
+                <InputFeild name='minQuantity' label='Min Quantity' form={form} />
                 <InputFeild name='category' label='Category' form={form} />
 
                 <p >Drop image here!</p>

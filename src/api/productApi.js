@@ -1,6 +1,7 @@
 
+import { PublicTwoTone } from "@material-ui/icons";
 import { axiosClient } from "./axiosClient";
-// Sang mat loz
+
 const productApi = {
     async getAll(filter) {
         var url = '/Products';
@@ -40,6 +41,19 @@ const productApi = {
         const url = `/Products/${id}`;
         return (await axiosClient.get(url));
     },
+
+
+    async update(id,data){
+        console.log(data);
+        const url = '/Products/Update';
+        const neededId = {id: id};
+        return axiosClient.put(url,{status:'ok'},{params: neededId,data:data});
+    },
+
+    async add(data){
+        const url = '/Products/Add';
+        return await axiosClient.post(url,data);
+    }
 
 
 }

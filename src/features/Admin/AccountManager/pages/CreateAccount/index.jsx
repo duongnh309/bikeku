@@ -13,7 +13,6 @@ function CreateAccount() {
 
     const handleSubmit = async (values) => {
         try {
-            const newValue ={...values,roles:[values.roletmp]}
             accountApi.registerByAdmin(values);
             enqueueSnackbar('Register successfully', { variant: 'success' });
         } catch (error) {
