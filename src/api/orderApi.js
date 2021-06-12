@@ -1,3 +1,4 @@
+import CheckoutFeature from "../features/User/Checkout";
 import { axiosClient } from "./axiosClient";
 
 const orderApi = {
@@ -21,6 +22,9 @@ const orderApi = {
             }
         }
     },
+    async checkout(data){
+        const url = '/Orders/Checkout';
+        return await axiosClient.post(url,data);
+    },
 }
-
 export default orderApi;

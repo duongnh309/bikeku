@@ -124,7 +124,7 @@ function BikeDetailPage(props) {
                   <div className="price-box-bar">
                     <div className="cart-and-bay-btn">
                       <a className="btn hvr-hover" data-fancybox-close href="/bikes">Back to Home Page</a>
-                      <button className="btn hvr-hover" data-fancybox-close href="#">Add to cart</button>
+                      <button className="btn hvr-hover" data-fancybox-close type='submit' >Add to cart</button>
                     </div>
                   </div>
                 </form>

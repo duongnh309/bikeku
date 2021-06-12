@@ -101,7 +101,7 @@ function AccountManager(props) {
                                             </thead>
                                             <tbody>
                                                 {accounts && accounts.map(account => (
-                                                    <tr className="odd gradeX" key={accounts.email}>
+                                                    <tr className="odd gradeX" key={account.email}>
                                                         <td>{account.email}</td>
                                                         <td>{account.username}</td>
                                                         <td>{account.name}</td>

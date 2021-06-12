@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import orderApi from '../../../../../api/orderApi';
 import Hero from '../../../../../components/headers/Hero';
 import CartInPage from '../../components/CartInPage';
 import { update } from '../../counterSlice'
@@ -46,6 +48,23 @@ function ShoppingCart(props) {
 
 
   const totalPrice = cart.reduce((total, { quantity, price }) => total + price * quantity, 0);
+
+  const history = useHistory();
+  const handleCheckoutClick = () =>{
+        const orders = [];
+        cart.forEach(c => {
+          orders.push({productId:c.id,quantity:c.quantity})
+        });
+        const orderDetails = {orderDetails: orders }
+        try {
+          console.log(orderDetails);
+          orderApi.checkout(orderDetails);
+          history.replace('/bikes');
+          localStorage.removeItem('cart');
+        } catch (error) {
+          
+        }
+  }
 
   return (
     <>
@@ -98,7 +117,7 @@ function ShoppingCart(props) {
                   </div>
                   <hr /> </div>
               </div>
-              <div className="col-12 d-flex shopping-box"><a href="/checkout" className="ml-auto btn hvr-hover">Checkout</a> </div>
+              <div className="col-12 d-flex shopping-box"><a onClick={handleCheckoutClick} className="ml-auto btn hvr-hover">Checkout</a> </div>
             </div>
           </div>
         </div>

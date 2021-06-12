@@ -32,7 +32,7 @@ function MainMenu(props) {
               <li>
               <a className={classNames({
                   "active-menu":tab.includes('/admin/orders')
-                })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Orders</a>
+                })} href="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</a>
               </li>
 
             </ul>
