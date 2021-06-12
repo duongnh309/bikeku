@@ -1,28 +1,15 @@
 import React from 'react';
-import { useState } from 'react';
-import productApi from '../../../../../api/productApi';
-import CreateForm from '../../components/CreateForm';
+import PropTypes from 'prop-types';
+import OrdersTable from '../../components/OrdersTable';
 
-CreateABike.propTypes = {
-
+OrdersPage.propTypes = {
+    
 };
 
-function CreateABike(props) {
-    const [imageUrl, setImageUrl] = useState('');
-    const handleSubmit = (values) => {
-        const newValues = { ...values, imageUrl: imageUrl }
-        try {
-            productApi.add(newValues);
-            console.log('GOODJOB');
-        } catch (error) {
-            console.log('ERROR');
-        }
-
-    }
-
-    //sang
+function OrdersPage(props) {
     return (
-        <>
+        <div>
+            <>
             <div id="page-wrapper">
                 <div id="page-inner">
                     {/* /. ROW  */}
@@ -32,11 +19,11 @@ function CreateABike(props) {
 
                             <div className="panel panel-default ">
                                 <div className="panel-heading">
-                                    Create a Bike
+                                    Order Detail
                                 </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">
-                                        <CreateForm setImageUrl={setImageUrl} onSubmit={handleSubmit} />
+                                        <OrdersTable/>
                                     </div>
                                     {/*End Advanced Tables */}
                                 </div>
@@ -47,7 +34,8 @@ function CreateABike(props) {
                 </div>
             </div>
         </>
+        </div>
     );
 }
 
-export default CreateABike;
+export default OrdersPage;

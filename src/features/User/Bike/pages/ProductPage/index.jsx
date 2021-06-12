@@ -6,14 +6,14 @@ import Hero from '../../../../../components/headers/Hero';
 import { increase } from '../../../../User/Checkout/counterSlice';
 import DefaultBikes from '../../components/DefaultBikes';
 import SingleChoiceFilter from '../../components/SingleChoiceFilter';
-
+import Pagination from '../../../../../components/Pagination';
 ProductPage.propTypes = {
 
 };
 
 function ProductPage({ }) {
   const dispatch = useDispatch();
-  
+
   const HandleAddToCart = (bike) => {
     if (JSON.parse(localStorage.getItem('cart')) !== null) {
       var cart = JSON.parse(localStorage.getItem('cart'));
@@ -42,28 +42,38 @@ function ProductPage({ }) {
 
   const [bikes, setBikes] = useState([]);
 
-  const [filter,setFilter] = useState({
-    
+  const [filter, setFilter] = useState({
+    PageSize: 10,
+    PageNumber: 1,
   });
-  //
+  const [pagination, setPagination] = useState({ total: 50, page: 1, PageSize: 10 });
+
 
   const handleSearch = (value) => {
     const searchData = value.search;
+    const searchBy = 'Name';
+    const newFilter = { ...filter, value: searchData, searchBy };
+    setFilter(newFilter);
   }
 
   const handleFilter = (value) => {
-    const filterData = value.price;
+    const priceRange = value.price;
+    const newFilter = { ...filter, priceRange };
+    delete newFilter.searchBy;
+    setFilter(newFilter);
+    console.log(newFilter);
   }
 
 
   useEffect(() => {
     fetchDataFormApi();
-  }, []);
+  }, [filter]);
 
   const fetchDataFormApi = async () => {
-
-    const response = await productApi.getAll();
-
+    const response = await productApi.getAll(filter);
+    const bikeFromApi = response.data;
+    setBikes(bikeFromApi);
+    setPagination(response.pagination)
   }
   return (
     <div>
@@ -80,7 +90,7 @@ function ProductPage({ }) {
                   </form>
                 </div>
                 <form onSubmit={form.handleSubmit(handleFilter)}>
-                  <SingleChoiceFilter form={form}/>
+                  <SingleChoiceFilter form={form} />
                   <div className="filter-price-left">
                     <div className="price-box-slider">
                       <p>
@@ -119,8 +129,9 @@ function ProductPage({ }) {
                     </ul>
                   </div>
                 </div>
-                <DefaultBikes defaultBikes={bikes} addToCart={HandleAddToCart} />
 
+                <DefaultBikes defaultBikes={bikes} addToCart={HandleAddToCart} />
+                <Pagination filter={filter} pagination={pagination} setFilter={setFilter} />
               </div>
 
             </div>

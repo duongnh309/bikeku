@@ -75,9 +75,7 @@ function MainTable() {
                 </a>
                 <div className="panel panel-default ">
                     <div className="panel-heading">
-
                         Bikes Managers Tables
-
                     </div>
                     <div className="panel-body">
                         <div className="table-responsive">

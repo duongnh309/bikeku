@@ -28,9 +28,9 @@ function UpdateABike() {
 
 
     const handleSubmit = async (values) => {
-        console.log('Form submit: ', values);
         try {
            productApi.update(bikeId, values);
+           
             enqueueSnackbar('Update successfully', { variant: 'success' });
             history.replace("/admin/bikes");
         } catch (error) {

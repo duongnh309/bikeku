@@ -1,26 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import productApi from '../../../../../api/productApi';
-import CreateForm from '../../components/CreateForm';
+import { useEffect } from 'react';
+import {queryString} from 'query-string'
+import orderApi from '../../../../../api/orderApi';
+import OrderDetailTable from '../../components/OrderDetailTable'
 
-CreateABike.propTypes = {
-
+OrderDetailPage.propTypes = {
+    
 };
 
-function CreateABike(props) {
-    const [imageUrl, setImageUrl] = useState('');
-    const handleSubmit = (values) => {
-        const newValues = { ...values, imageUrl: imageUrl }
-        try {
-            productApi.add(newValues);
-            console.log('GOODJOB');
-        } catch (error) {
-            console.log('ERROR');
-        }
-
-    }
-
-    //sang
+function OrderDetailPage() {
+    
+    const location = useLocation();
+    const param = queryString.parse(location.search);
+    const userid = param.id;
+    const [order,setOrder] = useState({});
+    useEffect(()=>{
+        const getBike = async ()=> {
+            setOrder(await orderApi.get(userid))
+        };
+        getBike();
+    },[])
     return (
         <>
             <div id="page-wrapper">
@@ -32,11 +34,11 @@ function CreateABike(props) {
 
                             <div className="panel panel-default ">
                                 <div className="panel-heading">
-                                    Create a Bike
+                                    Order Detail
                                 </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">
-                                        <CreateForm setImageUrl={setImageUrl} onSubmit={handleSubmit} />
+                                        <OrderDetailTable order={order}/>
                                     </div>
                                     {/*End Advanced Tables */}
                                 </div>
@@ -50,4 +52,4 @@ function CreateABike(props) {
     );
 }
 
-export default CreateABike;
+export default OrderDetailPage;
