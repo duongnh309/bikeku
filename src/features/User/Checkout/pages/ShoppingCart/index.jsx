@@ -59,8 +59,8 @@ function ShoppingCart(props) {
         try {
           console.log(orderDetails);
           orderApi.checkout(orderDetails);
-          console.log('GOODJOB_EM');
           history.replace('/bikes');
+          localStorage.removeItem('cart');
         } catch (error) {
           
         }
