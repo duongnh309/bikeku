@@ -96,7 +96,7 @@ function OrdersTable() {
                                                 <td>{order.userId}</td>
                                                 <td>{order.status}</td>
                                                 <td>{order.createDate}</td>
-                                                <td><button href={`/admin/orderDetail?id=${order.userId}`} className="btn btn-danger"><i className="fa fa-pencil"></i> View</button></td>
+                                                <td><a href={`/admin/orderDetail?id=${order.userId}`} className="btn btn-danger"><i className="fa fa-pencil"></i> View</a></td>
                                             </tr>
                                         ))}
                                     </tbody>
