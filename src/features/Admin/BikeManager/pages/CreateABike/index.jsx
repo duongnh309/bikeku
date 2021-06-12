@@ -15,7 +15,7 @@ function CreateABike(props) {
         const newValues = { ...values, imageUrl: imageUrl }
         try {
             productApi.add(newValues);
-            enqueueSnackbar('Update successfully', { variant: 'success' });
+            enqueueSnackbar('Create successfully', { variant: 'success' });
             console.log('GOODJOB');
         } catch (error) {
             console.log('ERROR');
