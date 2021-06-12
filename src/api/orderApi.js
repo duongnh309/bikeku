@@ -4,7 +4,7 @@ import { axiosClient } from "./axiosClient";
 const orderApi = {
     async confirm(id) {
         const url = `/Order/Confirm/${id}`;
-        return axiosClient;
+        axiosClient.post(url);
     },
 
     async getAll(filter) {
@@ -22,9 +22,11 @@ const orderApi = {
             }
         }
     },
+    
     async checkout(data){
         const url = '/Orders/Checkout';
         return await axiosClient.post(url,data);
     },
+
 }
 export default orderApi;
