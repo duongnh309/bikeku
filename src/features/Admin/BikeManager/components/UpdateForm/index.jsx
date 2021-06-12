@@ -46,8 +46,6 @@ function UpdateForm({ updateBike, onSubmit }) {
         if (onSubmit) {
             onSubmit(values);
         }
-
-        form.reset();
     }
 
 
