@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LoginForm(props) {
+function  LoginForm(props) {
   const classes = useStyles();
 
   const schema = yup.object().shape({
