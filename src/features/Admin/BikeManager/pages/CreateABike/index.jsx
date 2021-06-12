@@ -1,3 +1,4 @@
+import { useSnackbar } from 'notistack';
 import React from 'react';
 import { useState } from 'react';
 import productApi from '../../../../../api/productApi';
@@ -8,14 +9,17 @@ CreateABike.propTypes = {
 };
 
 function CreateABike(props) {
+    const { enqueueSnackbar } = useSnackbar();
     const [imageUrl, setImageUrl] = useState('');
     const handleSubmit = (values) => {
         const newValues = { ...values, imageUrl: imageUrl }
         try {
             productApi.add(newValues);
+            enqueueSnackbar('Create successfully', { variant: 'success' });
             console.log('GOODJOB');
         } catch (error) {
             console.log('ERROR');
+            enqueueSnackbar(error.message, { variant: 'error' });
         }
 
     }

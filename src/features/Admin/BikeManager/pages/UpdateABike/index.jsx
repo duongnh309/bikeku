@@ -5,6 +5,7 @@ import { useLocation } from 'react-router';
 import productApi from '../../../../../api/productApi';
 import UpdateForm from '../../components/UpdateForm';
 import { useSnackbar } from 'notistack';
+import { useHistory } from 'react-router-dom';
 
 UpdateABike.propTypes = {
 
@@ -16,6 +17,7 @@ function UpdateABike() {
     const bikeId = params.id;
     const [bike,setBike] = useState({});
     const { enqueueSnackbar } = useSnackbar();
+    const history = useHistory();
     
     useEffect(()=>{
         const getBike = async ()=> {
@@ -30,6 +32,7 @@ function UpdateABike() {
            productApi.update(bikeId, values);
            
             enqueueSnackbar('Update successfully', { variant: 'success' });
+            history.replace("/admin/bikes");
         } catch (error) {
             enqueueSnackbar(error.message, { variant: 'error' });
         }
