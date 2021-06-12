@@ -19,7 +19,7 @@ function OrdersPage(props) {
 
                             <div className="panel panel-default ">
                                 <div className="panel-heading">
-                                    Order Detail
+                                    Orders manager
                                 </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">

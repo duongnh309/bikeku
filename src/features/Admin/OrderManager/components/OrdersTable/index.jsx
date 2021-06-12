@@ -64,7 +64,7 @@ function OrdersTable() {
                                                 <select onChange={handleNumberInPage} name="records" aria-controls="dataTables-example" className="form-control input-sm">
                                                     <option value="10">10</option>
                                                     <option value="25">25</option>
-                                                    <option value="50">50</option><option value="100">100</option>
+                                                    <option value="50">50</option>
                                                 </select>
                                                 <span>records per page</span>
                                             </label>
@@ -73,17 +73,8 @@ function OrdersTable() {
                                     </div>
                                     <div className="col-sm-6" >
                                         <form onSubmit={handleSubmit(handleSearch)} style={{ marginLeft: '2em' }}>
-
                                             <div id="dataTables-example_filter" className="dataTables_filter">
-                                                <label style={{ marginLeft: '2em' }}>
-                                                    <select name="records" aria-controls="dataTables-example" className="form-control input-sm col-sm-4" {...register('searchBy')}>
-                                                        <option value="Maker">Maker</option>
-                                                        <option value="Name">Name</option>
-                                                    </select>
-
-                                                </label>
                                                 <label style={{ display: 'flex', alignItems: 'center', marginLeft: '2em' }}>Search:<input type="search" className="form-control input-sm" aria-controls="dataTables-example" {...register('search')} /></label>
-
                                             </div>
                                         </form>
 
