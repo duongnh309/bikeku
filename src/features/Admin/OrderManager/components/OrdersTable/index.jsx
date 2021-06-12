@@ -73,17 +73,8 @@ function OrdersTable() {
                                     </div>
                                     <div className="col-sm-6" >
                                         <form onSubmit={handleSubmit(handleSearch)} style={{ marginLeft: '2em' }}>
-
                                             <div id="dataTables-example_filter" className="dataTables_filter">
-                                                <label style={{ marginLeft: '2em' }}>
-                                                    <select name="records" aria-controls="dataTables-example" className="form-control input-sm col-sm-4" {...register('searchBy')}>
-                                                        <option value="Maker">Maker</option>
-                                                        <option value="Name">Name</option>
-                                                    </select>
-
-                                                </label>
                                                 <label style={{ display: 'flex', alignItems: 'center', marginLeft: '2em' }}>Search:<input type="search" className="form-control input-sm" aria-controls="dataTables-example" {...register('search')} /></label>
-
                                             </div>
                                         </form>
 
