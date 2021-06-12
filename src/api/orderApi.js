@@ -27,6 +27,9 @@ const orderApi = {
         const url = '/Orders/Checkout';
         return await axiosClient.post(url,data);
     },
-
+    async getMyOrder(pageNumer,pagesize){
+        const url = `/Orders/MyOrders?PageNumber=${pageNumer}&PageSize=${pagesize}`
+        return  await axiosClient.get(url);
+    }
 }
 export default orderApi;

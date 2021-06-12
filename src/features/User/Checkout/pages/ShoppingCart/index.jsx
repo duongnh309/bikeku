@@ -60,6 +60,7 @@ function ShoppingCart(props) {
           orderApi.checkout(orderDetails);
           history.replace('/bikes');
           localStorage.removeItem('cart');
+          dispatch(update(0));
         } catch (error) {
           
         }
