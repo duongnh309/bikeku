@@ -44,6 +44,7 @@ function CreateForm(props) {
             onSubmit(Values);
         }
         form.reset();
+        setImage('');
     }
 
     const [image, setImage] = useState('');
