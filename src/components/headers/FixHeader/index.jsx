@@ -53,12 +53,9 @@ function FixHeader(props) {
                   <ul className="dropdown-menu">
                     <li><NavLink to="/checkout/cart">Cart</NavLink></li>
                     <li><NavLink to="/checkout">Checkout</NavLink></li>
-                    <li><NavLink to="my-account.html">My Account</NavLink></li>
+                    <li><NavLink to="/orderhistory">Orders History</NavLink></li>
                   </ul>
                 </li>
-
-
-                <li className="nav-item"><a className="nav-link" href="service.html">Our Service</a></li>
                 <li className="nav-item"><a className="nav-link" href="contact-us.html">Contact Us</a></li>
               </ul>
             </div>

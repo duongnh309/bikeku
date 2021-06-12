@@ -16,6 +16,7 @@ import BikeManagerFeature from './features/Admin/BikeManager';
 import OrderManegerFeature from './features/Admin/OrderManager';
 import BikesFeature from './features/User/Bike';
 import CheckoutFeature from './features/User/Checkout';
+import OrderHistory from './features/User/OrderHistory';
 // import { NotiProvider } from './NotiHubContext';
 
 function App() {
@@ -85,6 +86,7 @@ function App() {
               <Route path="/home" component={HomePage} />
               <Route path="/" exact component={HomePage} />
               <Route path="/about" component={AboutUs} />
+              <Route path="/orderhistory" component={OrderHistory} />
             </Switch>
             <Footer />
 

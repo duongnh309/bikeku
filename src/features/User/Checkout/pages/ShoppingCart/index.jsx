@@ -57,10 +57,10 @@ function ShoppingCart(props) {
         });
         const orderDetails = {orderDetails: orders }
         try {
-          console.log(orderDetails);
           orderApi.checkout(orderDetails);
           history.replace('/bikes');
           localStorage.removeItem('cart');
+          dispatch(update(0));
         } catch (error) {
           
         }
