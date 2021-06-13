@@ -7,7 +7,8 @@ OrderHistory.propTypes = {
 };
 
 function OrderHistory(props) {
-    const response = orderApi.getMyOrder(1, 10).then();
+    const response = orderApi.getMyOrder(1, 10);
+    console.log(response);
     return (
         <div>
 
