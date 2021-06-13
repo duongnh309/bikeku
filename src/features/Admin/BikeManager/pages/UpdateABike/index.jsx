@@ -21,7 +21,7 @@ function UpdateABike() {
     
     useEffect(()=>{
         const getBike = async ()=> {
-            setBike(await productApi.get(bikeId))
+            setBike(await productApi.get(bikeId));
         };
         getBike();
     },[])
