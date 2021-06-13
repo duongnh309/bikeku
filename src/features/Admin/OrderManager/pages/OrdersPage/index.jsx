@@ -18,9 +18,6 @@ function OrdersPage(props) {
                             {/* Advanced Tables */}
 
                             <div className="panel panel-default ">
-                                <div className="panel-heading">
-                                    Orders manager
-                                </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">
                                         <OrdersTable/>

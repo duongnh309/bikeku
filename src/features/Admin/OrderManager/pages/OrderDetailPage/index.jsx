@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import {queryString} from 'query-string'
+import queryString from 'query-string'
 import orderApi from '../../../../../api/orderApi';
 import OrderDetailTable from '../../components/OrderDetailTable'
 
@@ -15,13 +15,13 @@ function OrderDetailPage() {
     
     const location = useLocation();
     const param = queryString.parse(location.search);
-    const userid = param.id;
+    const orderId = param.id;
     const [order,setOrder] = useState({});
     useEffect(()=>{
-        const getBike = async ()=> {
-            setOrder(await orderApi.get(userid))
+        const getOrder = async ()=> {
+            setOrder(await orderApi.get(orderId))
         };
-        getBike();
+        getOrder();
     },[])
     return (
         <>
@@ -33,9 +33,6 @@ function OrderDetailPage() {
                             {/* Advanced Tables */}
 
                             <div className="panel panel-default ">
-                                <div className="panel-heading">
-                                    Order Detail
-                                </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">
                                         <OrderDetailTable order={order}/>

@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import orderApi from '../../../../../api/orderApi';
 import { useForm } from 'react-hook-form';
 import Pagination from '../../../../../components/Pagination'
+import { useHistory } from 'react-router-dom';
 
 OrdersTable.propTypes = {
 
 };
 
 function OrdersTable() {
-    const handleViewOrder = (orderId) => {
-        orderApi.get(orderId);
-    }
 
 
     const [filter, setFilter] = useState({ PageSize: 10, PageNumber: 1 });
@@ -33,8 +31,10 @@ function OrdersTable() {
     //Search sp
     const form = useForm();
     const { register, handleSubmit } = form;
-    const handleSearch = (value) => {
-        
+    const handleSearch = async (value) => {
+        const searchValue = value.search;
+        const newOrders = await orderApi.getByEmail(searchValue);
+        setOrders(newOrders);
     }
 
     //Xu ly so sp hien thi tren table
@@ -47,15 +47,12 @@ function OrdersTable() {
             <div className="row">
                 <div className="col-md-12">
                     {/* Advanced Tables */}
-                    <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
-                        <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
-                        Order Detail
-                    </a>
                     <div className="panel panel-default ">
                         <div className="panel-heading">
-                            Bikes Managers Tables
+                        Orders
                         </div>
-                        <div className="panel-body">
+                        {!orders?'There no orders for this user':
+                            <div className="panel-body">
                             <div className="table-responsive">
                                 <div className="row">
                                     <div className="col-sm-6">
@@ -74,7 +71,7 @@ function OrdersTable() {
                                     <div className="col-sm-6" >
                                         <form onSubmit={handleSubmit(handleSearch)} style={{ marginLeft: '2em' }}>
                                             <div id="dataTables-example_filter" className="dataTables_filter">
-                                                <label style={{ display: 'flex', alignItems: 'center', marginLeft: '2em' }}>Search:<input type="search" className="form-control input-sm" aria-controls="dataTables-example" {...register('search')} /></label>
+                                                <label style={{ display: 'flex', alignItems: 'center', marginLeft: '2em' }}>Search by Email:<input type="search" className="form-control input-sm" aria-controls="dataTables-example" {...register('search')} /></label>
                                             </div>
                                         </form>
 
@@ -96,7 +93,7 @@ function OrdersTable() {
                                                 <td>{order.userId}</td>
                                                 <td>{order.status}</td>
                                                 <td>{order.createDate}</td>
-                                                <td><a href={`/admin/orderDetail?id=${order.userId}`} className="btn btn-danger"><i className="fa fa-pencil"></i> View</a></td>
+                                                <td><a href={`/admin/orders/detail?id=${order.id}`} className="btn btn-danger"><i className="fa fa-pencil"></i> View</a></td>
                                             </tr>
                                         ))}
                                     </tbody>
@@ -113,6 +110,7 @@ function OrdersTable() {
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                     {/*End Advanced Tables */}
                 </div>

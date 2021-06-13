@@ -1,10 +1,10 @@
-import CheckoutFeature from "../features/User/Checkout";
+import { get } from "react-hook-form";
 import { axiosClient } from "./axiosClient";
 
 const orderApi = {
     async confirm(id) {
-        const url = `/Order/Confirm/${id}`;
-        axiosClient.post(url);
+        const url = `/Orders/Confirm/${id}`;
+        axiosClient.put(url);
     },
 
     async getAll(filter) {
@@ -30,6 +30,15 @@ const orderApi = {
     async getMyOrder(pageNumer,pagesize){
         const url = `/Orders/MyOrders?PageNumber=${pageNumer}&PageSize=${pagesize}`
         return  await axiosClient.get(url);
-    }
+    },
+     async getByEmail(email){
+         const url = `Orders/Email/${email}`;
+         const response = await axiosClient.get(url);
+         return response.data;
+     },
+     async get(id){
+        const url = `/Orders/${id}`;
+        return axiosClient.get(url);
+     }
 }
 export default orderApi;

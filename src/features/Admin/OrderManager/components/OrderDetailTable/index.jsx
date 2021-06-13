@@ -11,6 +11,7 @@ function OrderDetailTable({ order }) {
     const history = useHistory();
     const { orderDetails } = order;
     const { enqueueSnackbar } = useSnackbar();
+
     const handleConfirm = (orderId) => {
         try {
             (orderApi.confirm(orderId))
@@ -21,6 +22,11 @@ function OrderDetailTable({ order }) {
             enqueueSnackbar(error.message, { variant: 'error' });
         }
     }
+
+    const handleCancel = ()=>{
+        history.replace('/admin/orders')
+    }
+    
     return (
         <div>
             <div className="row">
@@ -43,7 +49,7 @@ function OrderDetailTable({ order }) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {orderDetails.map((orderDetail) => (
+                                        {orderDetails?.map((orderDetail) => (
                                             <tr className="gradeU" key={orderDetail.productId}>
                                                 <td>{orderDetail.productId}</td>
                                                 <td>{orderDetail.quantity}</td>
@@ -53,7 +59,8 @@ function OrderDetailTable({ order }) {
                                         ))}
                                     </tbody>
                                 </table>
-                                <button onClick={() => handleConfirm(order.id)} className="btn btn-danger"><i className="fa fa-pencil"></i> Confirm</button>
+                                {order.status!=='Confirmed'&&<button onClick={() => handleConfirm(order.id)} className="btn btn-glyphicon"><i className="fa fa-pencil"></i> Confirm</button>}
+                                <button onClick={handleCancel} style={{float:'right'}} className="btn btn-danger"><i className="fa fa-pencil"></i> Cancel</button>
                             </div>
                         </div>
                     </div>
