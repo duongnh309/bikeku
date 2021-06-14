@@ -75,57 +75,56 @@ function OrderHistory(props) {
                                 <div className="table-main table-responsive">
                                     <form>
                                         <table className="table" key={nanoid()}>
+                                        
                                             <thead>
                                                 <tr>
                                                     <th>{'Order Id'}</th>
                                                     <th>{orderDetails.length !== 0 ? 'Product Id' : "Status"}</th>
                                                     <th>{orderDetails.length !== 0 ? 'Quantity' : 'Create Date'}</th>
-                                                    {orderDetails.length !== 0 &&<th>Price</th>}
-                                                    <th>{orderDetails.length !== 0 ? 'Action':'Details'}</th>
+                                                    {orderDetails.length !== 0 && <th>Price</th>}
+                                                    {orderDetails.length === 0 && <th>Details</th>}
                                                 </tr>
                                             </thead>
                                             <tbody>
 
-                                                {orderDetails.length !== 0 ? (orderDetails.map((orderDetail) => (
-                                                    <tr key={orderDetail.orderId}>
-                                                        <td className="name-pr">
-                                                            {orderDetail.orderId}
-                                                        </td>
-                                                        <td className="name-pr">
-                                                            <p>{orderDetail.productId}</p>
-                                                        </td>
-                                                        {/* <NumberInputFeild /> */}
-                                                        <td className="name-pr">
-                                                            <p>{orderDetail.quantity}</p>
-                                                        </td>
-                                                        <td className="name-pr">
-                                                            <p>{orderDetail.price}</p>
-                                                        </td>
-                                                        {orderDetails !== 0 &&
-                                                            <td className="name-pr" style={{ border: 'none' }}>
-                                                                <p><Button className="btn hvr-hover" onClick={handleClose} style={{ color: 'white' }}> Back</Button></p>
+                                                {orderDetails.length !== 0 ?
+                                                    (orderDetails.map((orderDetail) => (
+                                                        <tr key={orderDetail.orderId}>
+                                                            <td className="name-pr">
+                                                                {orderDetail.orderId}
                                                             </td>
-                                                        }
+                                                            <td className="name-pr">
+                                                                <p>{orderDetail.productId}</p>
+                                                            </td>
+                                                            {/* <NumberInputFeild /> */}
+                                                            <td className="name-pr">
+                                                                <p>{orderDetail.quantity}</p>
+                                                            </td>
+                                                            <td className="name-pr">
+                                                                <p>{orderDetail.price}</p>
+                                                            </td>
+                                                        </tr>
 
-                                                    </tr>
-                                                ))) : (orders.map((order) => (
-                                                    <tr key={order.id}>
-                                                        <td className="name-pr">
-                                                            {order.id}
-                                                        </td>
-                                                        <td className="name-pr">
-                                                            <p>{order.status}</p>
-                                                        </td>
-                                                        {/* <NumberInputFeild /> */}
-                                                        <td className="name-pr">
-                                                            <p>{order.createDate}</p>
-                                                        </td>
-                                                        <td className="name-pr" style={{ border: 'none' }}>
-                                                            <p><Button className="btn hvr-hover" onClick={() => handleOpen(order)} style={{ color: 'white' }}> View</Button></p>
-                                                        </td>
+                                                    ))):
+                                                    (orders.map((order) => (
+                                                        <tr key={order.id}>
+                                                            <td className="name-pr">
+                                                                {order.id}
+                                                            </td>
+                                                            <td className="name-pr">
+                                                                <p>{order.status}</p>
+                                                            </td>
+                                                            {/* <NumberInputFeild /> */}
+                                                            <td className="name-pr">
+                                                                <p>{order.createDate}</p>
+                                                            </td>
+                                                            <td className="name-pr" style={{ border: 'none' }}>
+                                                                <p><Button className="btn hvr-hover" onClick={() => handleOpen(order)} style={{ color: 'white',width:'100%' }}> View</Button></p>
+                                                            </td>
 
-                                                    </tr>
-                                                )))}
+                                                        </tr>
+                                                    )))}
+                                                    {orderDetails.length !== 0&&<tr ><Button className="btn hvr-hover" onClick={handleClose} style={{ color: 'white',width:'100px'}}> Back</Button></tr>}
                                             </tbody>
                                         </table>
                                     </form>
