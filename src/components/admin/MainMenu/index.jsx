@@ -4,43 +4,48 @@ import classNames from 'classnames';
 import { useLocation } from 'react-router';
 
 MainMenu.propTypes = {
-    
+
 };
 
 function MainMenu(props) {
-    const location = useLocation();
-    const tab = location.pathname;
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log('USER : ',user);
-    return (
-        <nav className="navbar-default navbar-side" role="navigation">
-          <div className="sidebar-collapse">
-            <ul className="nav" id="main-menu" style={{display:'block'}}>
-              <li className="text-center">
-                <img src="/assets/img/find_user.png" className="user-image img-responsive" />
-                
-                <h2 style={{color:'white'}}>{user&& user.name}</h2>
-              </li>
-              <li>
-                <a className={classNames({
-                  "active-menu":tab.includes('/admin/bikes')
-                })} href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a>
-              </li>
-              <li>
-              <a className={classNames({
-                  "active-menu":tab.includes('/admin/accounts')
-                })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</a>
-              </li>
-              <li>
-              <a className={classNames({
-                  "active-menu":tab.includes('/admin/orders')
-                })} href="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</a>
-              </li>
+  const location = useLocation();
+  const tab = location.pathname;
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log('USER : ', user);
+  return (
+    <nav className="navbar-default navbar-side" role="navigation">
+      <div className="sidebar-collapse">
+        <ul className="nav" id="main-menu" style={{ display: 'block' }}>
+          <li className="text-center">
+            <img src="/assets/img/find_user.png" className="user-image img-responsive" />
 
-            </ul>
-          </div>
-        </nav>  
-    );
+            <h2 style={{ color: 'white' }}>{user && user.name}</h2>
+          </li>
+          {user.role[0] === 'Admin' || user.role[0] === 'Modifier' &&
+            <li>
+              <a className={classNames({
+                "active-menu": tab.includes('/admin/bikes')
+              })} href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a>
+            </li>
+          }
+          {user.role[0] === 'Admin' &&
+            <li>
+              <a className={classNames({
+                "active-menu": tab.includes('/admin/accounts')
+              })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</a>
+            </li>
+          }
+          {user.role[0] === 'Admin' || user.role[0] === 'Saler' &&
+            <li>
+              <a className={classNames({
+                "active-menu": tab.includes('/admin/orders')
+              })} href="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</a>
+            </li>
+          }
+        </ul>
+      </div>
+    </nav>
+  );
 }
 
-export default MainMenu;           
+export default MainMenu;
