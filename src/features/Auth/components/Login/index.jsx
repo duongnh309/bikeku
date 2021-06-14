@@ -29,7 +29,13 @@ function Login(props) {
             const user = unwrapResult(resultAction);
             //
             if (user.role[0] === "Admin") {
-                history.push("/admin");
+                history.push("/admin/accounts");
+            }
+            if (user.role[0] === "Saler") {
+                history.push("/admin/orders");
+            }
+            if (user.role[0] === "Modifier") {
+                history.push("/admin/bikes");
             }
 
             //close dialog
