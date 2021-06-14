@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import Hero from '../../../../../components/headers/Hero';
 import queryString, { stringify } from 'query-string';
 import { useLocation } from 'react-router';
@@ -131,7 +130,7 @@ function BikeDetailPage(props) {
               </div>
             </div>
           </div>
-          <div className="row my-5">
+          {/* <div className="row my-5">
             <div className="col-lg-12">
               <div className="title-all text-center">
                 <h1>Featured Products</h1>
@@ -292,7 +291,7 @@ function BikeDetailPage(props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

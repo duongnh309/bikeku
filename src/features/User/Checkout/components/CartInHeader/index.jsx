@@ -16,7 +16,7 @@ function CartInHeader(props) {
             <ul className="cart-list">
             {cart.map((bike)=>(
                 <li key={bike.id}>
-                <a href={`/bikes/detail?id=${bike.id}`} className="photo"><img src={bike.image} className="cart-thumb" alt="" /></a>
+                <a href={`/bikes/detail?id=${bike.id}`} className="photo"><img src={bike.imageUrl} className="cart-thumb" alt="" /></a>
                 <h6><a href={`/bikes/detail?id=${bike.id}`} >{bike.name}  </a></h6>
                 <p>{bike.quantity} - <span className="price">${bike.price}</span></p>
               </li>

@@ -32,7 +32,8 @@ function DefaultBikes({ defaultBikes,addToCart,viewDetail}) {
                     <div className="type-lb">
                       <p className="sale">Sale</p>
                     </div>
-                    <img src={bike.image} className="img-fluid" alt="This a pic" />
+                    <img src={bike.imageUrl} className="img-fluid" alt="This a pic" />
+                    
                     <div className="mask-icon">
                       <ul>
                         <li><a href={`/bikes/detail?id=${bike.id}`} data-toggle="tooltip" data-placement="right" title="View"><i className="fas fa-eye" /></a></li>
