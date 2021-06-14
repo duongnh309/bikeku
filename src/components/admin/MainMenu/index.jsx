@@ -21,7 +21,14 @@ function MainMenu(props) {
 
             <h2 style={{ color: 'white' }}>{user && user.name}</h2>
           </li>
-          {user.role[0] === 'Admin' || user.role[0] === 'Modifier' &&
+          {user.role[0] === 'Modifier' &&
+            <li>
+              <a className={classNames({
+                "active-menu": tab.includes('/admin/bikes')
+              })} href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a>
+            </li>
+          }
+          {user.role[0] === 'Admin' &&
             <li>
               <a className={classNames({
                 "active-menu": tab.includes('/admin/bikes')
@@ -35,7 +42,14 @@ function MainMenu(props) {
               })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</a>
             </li>
           }
-          {user.role[0] === 'Admin' || user.role[0] === 'Saler' &&
+          {user.role[0] === 'Saler' &&
+            <li>
+              <a className={classNames({
+                "active-menu": tab.includes('/admin/orders')
+              })} href="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</a>
+            </li>
+          }
+          {user.role[0] === 'Admin' &&
             <li>
               <a className={classNames({
                 "active-menu": tab.includes('/admin/orders')
