@@ -1,4 +1,3 @@
-import { get } from "react-hook-form";
 import { axiosClient } from "./axiosClient";
 
 const orderApi = {
@@ -29,7 +28,8 @@ const orderApi = {
     },
     async getMyOrder(pageNumer,pagesize){
         const url = `/Orders/MyOrders?PageNumber=${pageNumer}&PageSize=${pagesize}`
-        return  await axiosClient.get(url);
+        const response =await axiosClient.get(url);
+        return response.data;
     },
      async getByEmail(email){
          const url = `Orders/Email/${email}`;

@@ -57,7 +57,7 @@ function ShoppingCart(props) {
         });
         const orderDetails = {orderDetails: orders }
         try {
-          orderApi.checkout(orderDetails);
+        orderApi.checkout(orderDetails);
           history.replace('/bikes');
           localStorage.removeItem('cart');
           dispatch(update(0));
