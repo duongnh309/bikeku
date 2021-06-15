@@ -40,7 +40,7 @@ function CreateFormAccount(props) {
         
         retypePassword: yup.string().required('Retype password').oneOf([yup.ref('password')], 'Password does not match'),
     });
-    const [role,setRole]= useState(['User']);
+    const [role,setRole]= useState('User');
 
     const regisform = useForm({
         defaultValues: {
@@ -49,7 +49,7 @@ function CreateFormAccount(props) {
             password: '',
             retypePassword: '',
             email: '',
-            role: role,
+            roletmp: role,
         },
         resolver: yupResolver(schema),
     });
