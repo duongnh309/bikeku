@@ -69,6 +69,7 @@ function ShoppingCart(props) {
   return (
     <>
       <Hero title={cart.length !== 0 ? 'Shopping cart' : 'Your cart is empty'} />
+      
       {cart.length !== 0 &&
         <div className="cart-box-main">
           <div className="container" >
