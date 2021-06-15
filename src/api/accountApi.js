@@ -18,6 +18,8 @@ const accountApi = {
     },
     async registerByAdmin(data) {
         const url = '/Admin/Users/Register';
+        console.log(data);
+        console.log('okkkkkk');
         return  await axiosClient.post(url,data);
     },
     

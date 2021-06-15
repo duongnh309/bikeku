@@ -1,5 +1,6 @@
 
 // import { useSnackbar } from 'notistack';
+import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import productApi from '../../../../../api/productApi';
 // import { useNoti, useStopNoti } from '../../../../NotiHubContext';
@@ -40,7 +41,7 @@ function BikeManagerPage(props) {
           </div>
           <hr></hr>
           {/* /. ROW  */}
-          <MainTable />
+          <MainTable key={nanoid()}/>
         </div>
       </div>
     </div>

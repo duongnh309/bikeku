@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import OrdersTable from '../../components/OrdersTable';
+import { nanoid } from 'nanoid';
 
 OrdersPage.propTypes = {
     
@@ -20,7 +21,7 @@ function OrdersPage(props) {
                             <div className="panel panel-default ">
                                 <div className="panel-body">
                                     <div className="table-responsive">
-                                        <OrdersTable/>
+                                        <OrdersTable key={nanoid()}/>
                                     </div>
                                     {/*End Advanced Tables */}
                                 </div>

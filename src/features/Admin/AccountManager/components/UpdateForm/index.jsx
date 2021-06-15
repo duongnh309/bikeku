@@ -37,7 +37,6 @@ function UpdateForm({ updateBike }) {
     });
 
     const handleSubmit = (Values) => {
-        // console.log("TODO FORM: ", Values);
         const { onSubmit } = updateBike;
         if (onSubmit) {
             onSubmit(Values);

@@ -61,7 +61,6 @@ function ProductPage({ }) {
     const newFilter = { ...filter, priceRange };
     delete newFilter.searchBy;
     setFilter(newFilter);
-    console.log(newFilter);
   }
 
 

@@ -10,19 +10,17 @@ CreateABike.propTypes = {
 
 function CreateABike(props) {
     const { enqueueSnackbar } = useSnackbar();
-    const [imageUrl, setImageUrl] = useState('');
-    const handleSubmit = (values) => {
-        const newValues = { ...values, imageUrl: imageUrl }
+    const handleSubmit = async (values) => {
         try {
-            productApi.add(newValues);
+            await productApi.add(values);
             enqueueSnackbar('Create successfully', { variant: 'success' });
-            console.log('GOODJOB');
         } catch (error) {
-            console.log('ERROR');
             enqueueSnackbar(error.message, { variant: 'error' });
         }
 
     }
+
+    
 
     //sang
     return (
@@ -40,7 +38,7 @@ function CreateABike(props) {
                                 </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">
-                                        <CreateForm setImageUrl={setImageUrl} onSubmit={handleSubmit} />
+                                        <CreateForm onSubmit={handleSubmit} />
                                     </div>
                                     {/*End Advanced Tables */}
                                 </div>
