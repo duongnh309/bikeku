@@ -23,7 +23,6 @@ CreateFormAccount.propTypes = {
 };
 
 function CreateFormAccount(props) {
-    const classes = useStyles();
     const { onSubmit } = props;
 
     const schema = yup.object().shape({
