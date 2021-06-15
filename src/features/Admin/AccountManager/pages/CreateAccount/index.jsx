@@ -12,7 +12,7 @@ CreateAccount.DefaultProp = {
     handleClose:PropTypes.func.isRequired,
 };
 
-function CreateAccount({setOpen}) {
+function CreateAccount({handleUpdated}) {
 
 
     const { enqueueSnackbar } = useSnackbar()
@@ -22,6 +22,7 @@ function CreateAccount({setOpen}) {
         const newValues = {...values, roles : [values.roletmp]}
         try {
             await accountApi.registerByAdmin(newValues);
+            handleUpdated();
             enqueueSnackbar('Register successfully', { variant: 'success' });
         } catch (error) {
             enqueueSnackbar(error, { variant: 'error' });

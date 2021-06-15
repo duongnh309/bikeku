@@ -49,7 +49,6 @@ const productApi = {
     },
 
     async add(data){
-        console.log(data);
         const url = '/Products/Add';
         return await axiosClient.post(url,data);
     },

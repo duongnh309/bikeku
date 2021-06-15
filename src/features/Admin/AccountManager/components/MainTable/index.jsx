@@ -1,4 +1,5 @@
 import { Button, Dialog, DialogContent } from '@material-ui/core';
+import { nanoid } from 'nanoid';
 import React, { useEffect, useState } from 'react';
 import accountApi from '../../../../../api/accountApi';
 import CreateAccount from '../../pages/CreateAccount';
@@ -40,6 +41,14 @@ function MainTable(props) {
         setOpen(false);
     };
 
+    const handleUpdated = () => {
+        setOpen(false);
+        setFilter({
+            ...filter, PageNumber: filter, totalPage: filter?filter.totalPage+1 : 3
+        })
+        
+    }
+
 
     const handleDeleteClick = (email) => {
         const newAccount = [...accounts];
@@ -56,7 +65,7 @@ function MainTable(props) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                        <CreateAccount close={handleClose}/>
+                    <CreateAccount handleUpdated={handleUpdated} />
                 </DialogContent>
             </Dialog>
 
@@ -75,7 +84,7 @@ function MainTable(props) {
 
 
                         <Button variant="outlined" color="primary" onClick={handleClickOpen} className="btn icon-btn btn-success" >  <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
-                                    Create account </Button></div>
+                            Create account </Button></div>
                     <div className="row">
                         <div className="col-md-12">
 
@@ -84,7 +93,7 @@ function MainTable(props) {
 
                                 <div className="panel-heading">
                                     Account Table
-            </div>
+                                </div>
                                 <div className="panel-body">
                                     <div className="table-responsive">
                                         <table className="table table-striped table-bordered table-hover" id="dataTables-example">
