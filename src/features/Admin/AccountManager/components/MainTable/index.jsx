@@ -15,7 +15,7 @@ function MainTable(props) {
 
     const [filter, setFilter] = useState({
         pageNum: 1,
-        pageSize: 3,
+        pageSize: 1,
         totalPage: 1,
     })
 
