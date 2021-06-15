@@ -10,7 +10,7 @@ function NavHeader(props) {
   const history = useHistory();
 
    const handleLogout = ()=>{
-    localStorage.removeItem('user');
+    localStorage.clear();
     history.replace("/");
    }
   return (

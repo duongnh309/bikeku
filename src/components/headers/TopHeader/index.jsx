@@ -78,11 +78,12 @@ function TopHeader(props) {
   };
   const history = useHistory();
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    // localStorage.removeItem('user');
+    // localStorage.removeItem('token');
+    localStorage.clear();
     setCheckLogin([]);
     history.replace("/");
     refreshPage();
-
   };
 
 
