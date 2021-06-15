@@ -20,7 +20,6 @@ function FixHeader(props) {
 
   const location = useLocation();
   const tab = location.pathname;
-  console.log(tab);
 
   const counter = useSelector((state) => state.counter);
 

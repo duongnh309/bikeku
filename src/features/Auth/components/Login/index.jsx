@@ -44,7 +44,6 @@ function Login(props) {
                 closeDialog();
             }
         } catch (error) {
-            console.log('Login Fail', error);
             enqueueSnackbar(error.message, { variant: 'error' });
 
         }

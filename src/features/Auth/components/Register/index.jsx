@@ -17,7 +17,6 @@ function Register(props) {
 
     const handleSubmit = async (values) => {
         try {
-            console.log("test value", values);
             //auto set username = email
             values.username = values.email;
 
@@ -30,10 +29,8 @@ function Register(props) {
                 closeDialog();
             }
 
-            console.log('new user: ', user);
             enqueueSnackbar('Successfully', { variant: 'success' });
         } catch (error) {
-            console.log('Fail: ', error);
             enqueueSnackbar(error.message, { variant: 'error' });
 
         }

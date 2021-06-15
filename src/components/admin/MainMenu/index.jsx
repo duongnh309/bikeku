@@ -11,7 +11,6 @@ function MainMenu(props) {
   const location = useLocation();
   const tab = location.pathname;
   const user = JSON.parse(localStorage.getItem('user'));
-  console.log('USER : ', user);
   return (
     <nav className="navbar-default navbar-side" role="navigation">
       <div className="sidebar-collapse">

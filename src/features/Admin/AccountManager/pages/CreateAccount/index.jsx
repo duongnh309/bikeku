@@ -12,11 +12,12 @@ function CreateAccount() {
     const { enqueueSnackbar } = useSnackbar()
 
     const handleSubmit = async (values) => {
+        const newValues = {...values, role : [values.roletmp]}
         try {
-            accountApi.registerByAdmin(values);
+            await accountApi.registerByAdmin(newValues);
             enqueueSnackbar('Register successfully', { variant: 'success' });
         } catch (error) {
-            enqueueSnackbar(error.message, { variant: 'error' });
+            enqueueSnackbar('Register Fail, Email already exist', { variant: 'error' });
         }
     }
     return (

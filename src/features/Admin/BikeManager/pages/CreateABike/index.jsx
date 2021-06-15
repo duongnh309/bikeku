@@ -14,9 +14,7 @@ function CreateABike(props) {
         try {
             await productApi.add(values);
             enqueueSnackbar('Create successfully', { variant: 'success' });
-            console.log('GOODJOB');
         } catch (error) {
-            console.log('ERROR');
             enqueueSnackbar(error.message, { variant: 'error' });
         }
 
