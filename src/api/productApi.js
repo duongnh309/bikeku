@@ -53,6 +53,11 @@ const productApi = {
         return await axiosClient.post(url,data);
     },
 
+    delete(id) {
+        const url = `/Products/Update/${id}`;
+        return axiosClient.delete(url);
+    }
+
 
 }
 

@@ -33,7 +33,8 @@ function MainTable() {
     //mac dinh la pagesize 
 
     const handleDelete = (id) => {
-        console.log(id);
+        productApi.delete(id);
+        setFilter({...filter, PageNumber: 1})
     }
 
     //Search sp
@@ -165,7 +166,7 @@ function MainTable() {
                             </table>
                             <div className="row">
                                 <div className="col-sm-6">
-                                    <div className="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all">Showing 1 to 10 of 57 entries</div>
+                                    <div className="dataTables_info" id="dataTables-example_info" role="alert" aria-live="polite" aria-relevant="all"></div>
                                 </div>
                                 <div className="col-sm-6">
                                     <div className="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
