@@ -18,7 +18,6 @@ function OrderDetailTable({ order }) {
             .then(enqueueSnackbar('Successfully', { variant: 'success' }))
             .then(history.replace('/admin/orders'));
         } catch (error) {
-            console.log('Confirm Failded', error);
             enqueueSnackbar(error.message, { variant: 'error' });
         }
     }
