@@ -54,7 +54,7 @@ const productApi = {
     },
 
     delete(id) {
-        const url = `/Products/Update/${id}`;
+        const url = `/Products/Delete/${id}`;
         return axiosClient.delete(url);
     }
 
