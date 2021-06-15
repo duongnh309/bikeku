@@ -15,22 +15,21 @@ function UpdateABike() {
     const location = useLocation();
     const params = queryString.parse(location.search);
     const bikeId = params.id;
-    const [bike,setBike] = useState({});
+    const [bike, setBike] = useState({});
     const { enqueueSnackbar } = useSnackbar();
     const history = useHistory();
-    
-    useEffect(()=>{
-        const getBike = async ()=> {
+
+    useEffect(() => {
+        const getBike = async () => {
             setBike(await productApi.get(bikeId));
         };
         getBike();
-    },[])
+    }, [])
 
 
     const handleSubmit = async (values) => {
         try {
-           productApi.update(bikeId, values);
-           
+            await productApi.update(bikeId, values);
             enqueueSnackbar('Update successfully', { variant: 'success' });
             history.replace("/admin/bikes");
         } catch (error) {
@@ -54,7 +53,7 @@ function UpdateABike() {
                             </div>
                             <div className="panel-body">
                                 <div className="table-responsive">
-                                        <UpdateForm key={nanoid()} updateBike={bike} onSubmit={handleSubmit} />
+                                    <UpdateForm key={nanoid()} updateBike={bike} onSubmit={handleSubmit} />
                                 </div>
                                 {/*End Advanced Tables */}
                             </div>
