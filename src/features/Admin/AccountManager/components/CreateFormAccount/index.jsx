@@ -8,15 +8,6 @@ import * as yup from "yup";
 import InputField from '../../../../../components/form-control/InputFeild';
 import PasswordField from '../../../../../components/form-control/PasswordField';
 
-const useStyles = makeStyles((theme) => ({
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-}));
 
 CreateFormAccount.propTypes = {
     onSubmit: PropTypes.func,
