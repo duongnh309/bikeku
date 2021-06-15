@@ -5,6 +5,7 @@ import orderApi from '../../../../../api/orderApi';
 import Hero from '../../../../../components/headers/Hero';
 import CartInPage from '../../components/CartInPage';
 import { update } from '../../counterSlice'
+import { useSnackbar } from 'notistack';
 
 ShoppingCart.propTypes = {
 
@@ -50,6 +51,7 @@ function ShoppingCart(props) {
   const totalPrice = cart.reduce((total, { quantity, price }) => total + price * quantity, 0);
 
   const history = useHistory();
+  const { enqueueSnackbar } = useSnackbar();
   const handleCheckoutClick = () =>{
         const orders = [];
         cart.forEach(c => {
@@ -61,6 +63,7 @@ function ShoppingCart(props) {
           history.replace('/bikes');
           localStorage.removeItem('cart');
           dispatch(update(0));
+          enqueueSnackbar('Check out successfully', { variant: 'success' });
         } catch (error) {
           
         }

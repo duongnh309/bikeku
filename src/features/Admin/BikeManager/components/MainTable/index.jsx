@@ -32,10 +32,10 @@ function MainTable() {
 
     //mac dinh la pagesize 
 
-    const handleDelete = (id) => {
-        
-        productApi.delete(id);
-        setFilter({...filter, PageNumber: 1})
+    const handleDelete = async (id) => {
+
+        await productApi.delete(id);
+        setFilter({ ...filter, PageNumber: 1 })
     }
 
     //Search sp
