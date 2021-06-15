@@ -14,7 +14,7 @@ function OrderManegerFeature(props) {
         <div>
             <Switch>
                 <Route path="/admin/orders/detail" component={OrderDetailPage}></Route>
-                <Route path="/admin/orders" key={nanoid()}  component={OrdersPage} exact></Route>
+                <Route path="/admin/orders" key={nanoid()} component={OrdersPage} exact></Route>
             </Switch>
         </div>
     );

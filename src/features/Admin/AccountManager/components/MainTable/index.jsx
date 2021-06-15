@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import accountApi from '../../../../../api/accountApi';
 import CreateAccount from '../../pages/CreateAccount';
 import PaginationCompnent from '../Pagination';
-AccountManager.propTypes = {
+MainTable.propTypes = {
 
 };
 
-function AccountManager(props) {
+function MainTable(props) {
 
     const [accounts, setAccounts] = useState([]);
     const [open, setOpen] = useState(false);
@@ -20,7 +20,6 @@ function AccountManager(props) {
 
     useEffect(async () => {
         const response = await accountApi.getAllAccounts(filter.pageNum, filter.pageSize);
-
         setFilter({ ...filter, totalPage: Math.ceil(response.total / filter.pageSize) });
     }, [])
 
@@ -57,7 +56,7 @@ function AccountManager(props) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                        <CreateAccount />
+                        <CreateAccount close={handleClose}/>
                 </DialogContent>
             </Dialog>
 
@@ -127,4 +126,4 @@ function AccountManager(props) {
     );
 }
 
-export default AccountManager;
+export default MainTable;

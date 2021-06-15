@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router';
 import CreateAccount from './pages/CreateAccount';
 import UpdateAccount from './pages/UpdateAccount';
 import AccountManagerPage from './pages/AccountManagerPage'
+import { nanoid } from 'nanoid';
 
 AccountManagerFeature.propTypes = {
     
@@ -15,7 +16,7 @@ function AccountManagerFeature(props) {
             <Switch>
                 <Route path="/admin/accounts/create" component={CreateAccount} />
                 <Route path="/admin/accounts/update" component={UpdateAccount} />
-                <Route path="/admin/accounts" exact component={AccountManagerPage} />
+                <Route path="/admin/accounts" component={AccountManagerPage} />
             </Switch>
         </div>
     );
