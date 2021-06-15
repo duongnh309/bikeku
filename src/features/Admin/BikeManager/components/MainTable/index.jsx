@@ -33,6 +33,7 @@ function MainTable() {
     //mac dinh la pagesize 
 
     const handleDelete = (id) => {
+        
         productApi.delete(id);
         setFilter({...filter, PageNumber: 1})
     }
