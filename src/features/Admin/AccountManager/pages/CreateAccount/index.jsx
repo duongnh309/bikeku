@@ -5,20 +5,26 @@ import accountApi from '../../../../../api/accountApi';
 import CreateFormAccount from '../../components/CreateFormAccount';
 
 CreateAccount.propTypes = {
-    
+    handleClose:{}
 };
-function CreateAccount() {
+
+CreateAccount.DefaultProp = {
+    handleClose:PropTypes.func.isRequired,
+};
+
+function CreateAccount({setOpen}) {
+
 
     const { enqueueSnackbar } = useSnackbar()
 
     const handleSubmit = async (values) => {
-        console.log(values);
+        
         const newValues = {...values, roles : [values.roletmp]}
         try {
             await accountApi.registerByAdmin(newValues);
             enqueueSnackbar('Register successfully', { variant: 'success' });
         } catch (error) {
-            enqueueSnackbar('Register Fail', { variant: 'error' });
+            enqueueSnackbar(error, { variant: 'error' });
         }
     }
     return (
