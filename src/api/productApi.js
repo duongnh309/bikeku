@@ -1,5 +1,4 @@
 
-import { PublicTwoTone } from "@material-ui/icons";
 import { axiosClient } from "./axiosClient";
 
 const productApi = {
