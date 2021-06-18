@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useLocation } from 'react-router';
+import { useEffect } from 'react';
 
 MainMenu.propTypes = {
 
 };
 
 function MainMenu(props) {
+  
   const location = useLocation();
   const tab = location.pathname;
   const user = JSON.parse(localStorage.getItem('user'));

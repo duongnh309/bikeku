@@ -70,7 +70,7 @@ function TopHeader(props) {
   const handleCloseWhenDone = () => {
     setOpen(false);
     setCheckLogin(JSON.parse(localStorage.getItem('user')));
-    //refreshPage();
+    refreshPage();
   };
 
   const handleClose = () => {

@@ -34,7 +34,6 @@ function (error) {
     const {config, status, data} = error.response;
      const URLS =['Users/Register', 'Users/Authenticate'];
     if(URLS.includes(config.url) && status === 400){
-
         if(data.message){
             throw new Error(data.message);
         }

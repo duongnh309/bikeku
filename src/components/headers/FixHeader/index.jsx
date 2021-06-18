@@ -44,7 +44,7 @@ function FixHeader(props) {
                 <li className={classes({ "nav-item": true, "active": tab === "/home" })}><a className="nav-link" href="/home">Home</a></li>
                 <li className={classes({ "nav-item": true, "active": tab === "/about" })}><NavLink className="nav-link" to="/about">About Us</NavLink></li>
                 <li className={classes({ "dropdown megamenu-fw": true, "active": tab === "/bikes" })}>
-                  <a className="nav-link dropdown-toggle arrow" href="/bikes">Product</a>
+                  <NavLink className="nav-link dropdown-toggle arrow" to="/bikes">Product</NavLink>
                 </li>
 
                 <li className={classes({"dropdown": true,"active": tab.includes("/checkout"),"show": tab.includes("/checkout") })}>

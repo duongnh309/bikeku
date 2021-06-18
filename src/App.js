@@ -45,7 +45,6 @@ function App() {
                       <Skeleton variant="rect" width={260} height={70} />
                     </Grid>
 
-
                     <Grid item xs={6}>
                       <Box marginLeft={3} marginTop={2}>
                         <Skeleton variant='rect' width={1595} height={880}></Skeleton>
@@ -58,12 +57,14 @@ function App() {
               </div> :
               <div id="wrapper">
                 {/* <NotiProvider> */}
+                
                 <NavHeader />
                 <MainMenu />
                 <Switch>
                   <Route path="/admin/bikes" component={BikeManagerFeature}></Route>
                   <Route path="/admin/accounts" component={AccountManagerFeature}></Route>
                   <Route path="/admin/orders" component={OrderManegerFeature}></Route>
+
                 </Switch>
                 {/* </NotiProvider> */}
               </div>
