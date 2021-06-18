@@ -64,7 +64,6 @@ function App() {
                   <Route path="/admin/bikes" component={BikeManagerFeature}></Route>
                   <Route path="/admin/accounts" component={AccountManagerFeature}></Route>
                   <Route path="/admin/orders" component={OrderManegerFeature}></Route>
-
                 </Switch>
                 {/* </NotiProvider> */}
               </div>
