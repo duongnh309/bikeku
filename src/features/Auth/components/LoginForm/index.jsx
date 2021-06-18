@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
-import InputFeild from '../../../../components/form-control/InputFeild';
+import InputFeild from '../../../../components/form-control/InputField';
 import PasswordField from '../../../../components/form-control/PasswordField';
 
 

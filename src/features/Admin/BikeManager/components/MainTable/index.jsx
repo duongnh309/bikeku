@@ -1,7 +1,12 @@
+import { Dialog, IconButton, makeStyles } from '@material-ui/core';
+import DialogContent from '@material-ui/core/DialogContent';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import productApi from '../../../../../api/productApi';
-import Pagination from '../../../../../components/Pagination'
+import Pagination from '../../../../../components/Pagination';
+import UpdateABike from '../../pages/UpdateABike';
+import CreateABike from '../../pages/CreateABike';
+import { Close } from '@material-ui/icons';
 
 
 MainTable.propTypes = {
@@ -9,6 +14,35 @@ MainTable.propTypes = {
 
 MainTable.defaultProps = {
     bikes: [],
+};
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+    link: {
+        color: 'white',
+        textDecoration: 'none'
+    },
+
+    closeButton: {
+        position: 'absolute',
+        top: theme.spacing(1),
+        right: theme.spacing(1),
+        color: theme.palette.grey[500],
+    },
+
+}));
+
+const MODE = {
+    CREATE: 'create',
+    UPDATE: 'update',
 };
 
 
@@ -23,6 +57,7 @@ function MainTable() {
     }, [filter]);
 
     const [bikes, setBikes] = useState([]);
+    const [mode, setMode] = useState(MODE.CREATE);
     const fetchDataFormApi = async () => {
         const response = await productApi.getAll(filter);
         const bikeFromApi = response.data;
@@ -65,16 +100,39 @@ function MainTable() {
         delete newFilter.value;
         setFilter(newFilter);
     }
+    //From Update
+
+    const classes = useStyles();
+
+    const [open, setOpen] = useState(false);
+    const [biku, setBike] = useState({});
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+
+    const handleClickOpen = (selectedBike) => {
+        setBike(selectedBike);
+        setMode(MODE.UPDATE);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setMode(MODE.CREATE);
+        setOpen(false);
+    };
 
 
     return (
         <div className="row">
             <div className="col-md-12">
                 {/* Advanced Tables */}
-                <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
+                {/* <a href="/admin/bikes/create" className="btn icon-btn btn-success" >
                     <span className="glyphicon btn-glyphicon glyphicon-plus img-circle text-success " />
                     Create A New Bike
-                </a>
+                </a> */}
+                <button onClick={handleOpen} className="btn icon-btn btn-success"><i className="fa fa-pencil">Create A New Bike</i></button>
                 <div className="panel panel-default ">
                     <div className="panel-heading">
                         Bikes Managers Tables
@@ -158,11 +216,39 @@ function MainTable() {
                                             <td>{bike.category}</td>
                                             <td>{bike.createDate}</td>
                                             <td><button onClick={() => handleDelete(bike.id)} className="btn btn-danger"><i className="fa fa-pencil"></i> Delete</button></td>
-                                            <td><a href={`/admin/bikes/update?id=${bike.id}`} className="btn btn-primary"><i className="fa fa-edit "></i> Update</a>
+                                            <td><button onClick={() => handleClickOpen(bike)} className="btn btn-primary"><i className="fa fa-pencil"></i> Update</button></td>
+                                            {/* <td><a href={`/admin/bikes/update?id=${bike.id}`} className="btn btn-primary"><i className="fa fa-edit " onClick={handleClickOpen}></i> Update</a> */}
 
-                                            </td>
+                                            {/* </td> */}
                                         </tr>
                                     ))}
+                                    <Dialog disableBackdropClick
+                                        disableEscapeKeyDown
+                                        open={open}
+                                        onClose={handleClose} aria-labelledby="form-dialog-title">
+
+                                        <IconButton className={classes.closeButton} onClick={handleClose}>
+                                            <Close />
+                                        </IconButton>
+
+                                        <DialogContent>
+                                            {mode === MODE.UPDATE && (
+                                                <>
+                                                    <UpdateABike bike={biku} closeDialog={handleClose} />
+                                                </>
+
+                                            )}
+
+                                            {mode === MODE.CREATE && (
+                                                <>
+                                                    <CreateABike closeDialog={handleClose} />
+                                                </>
+
+                                            )}
+
+
+                                        </DialogContent>
+                                    </Dialog>
                                 </tbody>
                             </table>
                             <div className="row">

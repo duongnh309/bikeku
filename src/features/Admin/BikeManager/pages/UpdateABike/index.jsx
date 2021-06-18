@@ -11,20 +11,14 @@ UpdateABike.propTypes = {
 
 };
 
-function UpdateABike() {
+function UpdateABike(props) {
     const location = useLocation();
     const params = queryString.parse(location.search);
     const bikeId = params.id;
-    const [bike, setBike] = useState({});
     const { enqueueSnackbar } = useSnackbar();
     const history = useHistory();
 
-    useEffect(() => {
-        const getBike = async () => {
-            setBike(await productApi.get(bikeId));
-        };
-        getBike();
-    }, [])
+    
 
 
     const handleSubmit = async (values) => {
@@ -39,29 +33,9 @@ function UpdateABike() {
 
 
     return (
-        <div id="page-wrapper">
-            <div id="page-inner">
-
-                {/* /. ROW  */}
-                <div className="row">
-                    <div className="col-md-12">
-                        {/* Advanced Tables */}
-
-                        <div className="panel panel-default ">
-                            <div className="panel-heading">
-                                Update a bike
-                            </div>
-                            <div className="panel-body">
-                                <div className="table-responsive">
-                                    <UpdateForm key={nanoid()} updateBike={bike} onSubmit={handleSubmit} />
-                                </div>
-                                {/*End Advanced Tables */}
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div>
+            <h1>Update a bike</h1>
+            <UpdateForm key={nanoid()} updateBike={props.bike} onSubmit={handleSubmit} />
         </div>
 
 

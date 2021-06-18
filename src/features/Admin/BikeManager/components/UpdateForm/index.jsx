@@ -3,18 +3,39 @@ import { Avatar, Typography } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { useDropzone } from 'react-dropzone';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
-import InputFeild from '../../../../../components/form-control/InputFeild';
+import InputFeild from '../../../../../components/form-control/InputField';
 import { storage } from '../../../../../firebase/firebase';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 UpdateForm.propTypes = {
     onSubmit: PropTypes.func,
 };
+const useStyles = makeStyles((theme) => ({
+    paper: {
+      marginTop: theme.spacing(8),
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+   
+    },
+    avatar: {
+      margin: theme.spacing(1),
+      backgroundColor: "#d33b33",
+    },
+    form: {
+      width: '100%', // Fix IE 11 issue.
+      marginTop: theme.spacing(3),
+    },
+    submit: {
+      margin: theme.spacing(3, 0, 2),
+    },
+  }));
 
 function UpdateForm({ updateBike, onSubmit }) {
+    const classes = useStyles();
     
     const schema = yup.object().shape({
         name: yup.string().required('Please enter your name!'),
@@ -84,12 +105,12 @@ function UpdateForm({ updateBike, onSubmit }) {
     const { register } = form;
     return (
         <div>
-            <div>
+            <div className={classes.paper}> 
                 <Avatar>
                     <LockOutlined>
                     </LockOutlined>
                 </Avatar>
-            </div>
+            
             <form onSubmit={form.handleSubmit(handleSubmit)}>
                 <InputFeild name='name' label='Name' form={form} />
                 <InputFeild name='maker' label='Maker' form={form} />
@@ -106,10 +127,8 @@ function UpdateForm({ updateBike, onSubmit }) {
                 <button className="btn btn-primary" type='submit' >
                     <i className="fa fa-edit"></i> Update Product
                 </button>
-                <a className="btn btn-default" href="/admin/bikes" type='submit' style={{ float: 'right' }}>
-                    Cancel
-                </a>
             </form>
+            </div>
         </div>
     );
 }

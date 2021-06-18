@@ -106,9 +106,6 @@ function CreateForm(props) {
                 <button className="btn btn-primary" type='submit' >
                     <i className="fa fa-edit"></i> Create New Product
                 </button>
-                <a className="btn btn-default" href="/admin/bikes" type='submit' style={{ float: 'right' }}>
-                    Cancel
-                </a>
             </form>
         </div>
     );

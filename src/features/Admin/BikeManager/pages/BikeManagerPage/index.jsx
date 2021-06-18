@@ -42,6 +42,7 @@ function BikeManagerPage(props) {
           <hr></hr>
           {/* /. ROW  */}
           <MainTable key={nanoid()}/>
+          
         </div>
       </div>
     </div>
