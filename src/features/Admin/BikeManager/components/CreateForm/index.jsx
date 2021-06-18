@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
-import InputFeild from '../../../../../components/form-control/InputFeild';
+import InputField from '../../../../../components/form-control/InputField';
 import { storage } from '../../../../../firebase/firebase';
 
 
@@ -91,13 +91,13 @@ function CreateForm(props) {
                 </Avatar>
             </div>
             <form onSubmit={form.handleSubmit(handleSubmit)}>
-                <InputFeild name='name' label='Name' form={form} />
-                <InputFeild name='maker' label='Maker' form={form} />
-                <InputFeild name='description' label='Description' form={form} />
-                <InputFeild name='price' label='Price' form={form} />
-                <InputFeild name='quantity' label='Quantity' form={form} />
-                <InputFeild name='minQuantity' label='MinQuantity' form={form} />
-                <InputFeild name='category' label='Category' form={form} />
+                <InputField name='name' label='Name' form={form} />
+                <InputField name='maker' label='Maker' form={form} />
+                <InputField name='description' label='Description' form={form} />
+                <InputField name='price' label='Price' form={form} />
+                <InputField name='quantity' label='Quantity' form={form} />
+                <InputField name='minQuantity' label='MinQuantity' form={form} />
+                <InputField name='category' label='Category' form={form} />
                 <Typography>Select Img : </Typography>
                 <input  {...register('image')} type="file" id="my-img" name="ImageStyle" onChange={onChangeImg} />
                 <img src={image} style={{ width: '180px', height: '100px' }} />

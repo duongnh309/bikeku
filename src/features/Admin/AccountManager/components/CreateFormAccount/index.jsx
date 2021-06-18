@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from "yup";
-import InputField from '../../../../../components/form-control/InputFeild';
+import InputField from '../../../../../components/form-control/InputField';
 import PasswordField from '../../../../../components/form-control/PasswordField';
 
 
