@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useLocation } from 'react-router';
 import { useEffect } from 'react';
+import {NavLink} from 'react-router-dom'
 
 MainMenu.propTypes = {
 
@@ -24,37 +25,37 @@ function MainMenu(props) {
           </li>
           {user.role[0] === 'Modifier' &&
             <li>
-              <a className={classNames({
+              <NavLink className={classNames({
                 "active-menu": tab.includes('/admin/bikes')
-              })} href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a>
+              })} to="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</NavLink>
             </li>
           }
           {user.role[0] === 'Admin' &&
             <li>
-              <a className={classNames({
+              <NavLink className={classNames({
                 "active-menu": tab.includes('/admin/bikes')
-              })} href="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</a>
+              })} to="/admin/bikes"><i className="fa fa-dashboard fa-3x" /> Bikes</NavLink>
             </li>
           }
           {user.role[0] === 'Admin' &&
             <li>
-              <a className={classNames({
+              <NavLink className={classNames({
                 "active-menu": tab.includes('/admin/accounts')
-              })} href="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</a>
+              })} to="/admin/accounts"><i className="fa fa-dashboard fa-3x" /> Accounts</NavLink>
             </li>
           }
           {user.role[0] === 'Saler' &&
             <li>
-              <a className={classNames({
+              <NavLink className={classNames({
                 "active-menu": tab.includes('/admin/orders')
-              })} href="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</a>
+              })} to="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</NavLink>
             </li>
           }
           {user.role[0] === 'Admin' &&
             <li>
-              <a className={classNames({
+              <NavLink className={classNames({
                 "active-menu": tab.includes('/admin/orders')
-              })} href="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</a>
+              })} to="/admin/orders"><i className="fa fa-dashboard fa-3x" /> Orders</NavLink>
             </li>
           }
         </ul>

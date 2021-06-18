@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import orderApi from '../../../../../api/orderApi';
 import { useForm } from 'react-hook-form';
 import Pagination from '../../../../../components/Pagination'
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 OrdersTable.propTypes = {
 
@@ -93,7 +93,7 @@ function OrdersTable() {
                                                 <td>{order.userId}</td>
                                                 <td>{order.status}</td>
                                                 <td>{order.createDate}</td>
-                                                <td><a href={`/admin/orders/detail?id=${order.id}`} className="btn btn-danger"><i className="fa fa-pencil"></i> View</a></td>
+                                                <td><NavLink to={`/admin/orders/detail?id=${order.id}`} className="btn btn-danger"><i className="fa fa-pencil"></i> View</NavLink></td>
                                             </tr>
                                         ))}
                                     </tbody>

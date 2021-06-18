@@ -13,9 +13,6 @@ function UpdateABike({bike}) {
     const { enqueueSnackbar } = useSnackbar();
     const history = useHistory();
 
-    
-
-
     const handleSubmit = async (values) => {
         try {
             await productApi.update(bike.id, values);
