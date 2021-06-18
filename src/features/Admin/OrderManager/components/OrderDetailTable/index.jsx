@@ -12,11 +12,12 @@ function OrderDetailTable({ order }) {
     const { orderDetails } = order;
     const { enqueueSnackbar } = useSnackbar();
 
-    const handleConfirm = (orderId) => {
+    const handleConfirm = async (orderId) => {
         try {
-            (orderApi.confirm(orderId))
-            .then(enqueueSnackbar('Successfully', { variant: 'success' }))
-            .then(history.replace('/admin/orders'));
+            (await orderApi.confirm(orderId))
+            history.replace('/admin/orders');
+            enqueueSnackbar('Successfully', { variant: 'success' })
+            
         } catch (error) {
             enqueueSnackbar(error.message, { variant: 'error' });
         }

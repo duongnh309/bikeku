@@ -21,7 +21,7 @@ function OrdersPage(props) {
                             <div className="panel panel-default ">
                                 <div className="panel-body">
                                     <div className="table-responsive">
-                                        <OrdersTable key={nanoid()}/>
+                                        <OrdersTable/>
                                     </div>
                                     {/*End Advanced Tables */}
                                 </div>
