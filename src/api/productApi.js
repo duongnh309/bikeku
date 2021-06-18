@@ -43,6 +43,7 @@ const productApi = {
 
 
     async update(id,data){
+        console.log(data);
         const url = `/Products/Update/${id}`;
         return await (axiosClient.put(url,data));
     },
