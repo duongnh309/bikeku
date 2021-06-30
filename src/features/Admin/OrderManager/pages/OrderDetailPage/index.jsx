@@ -11,6 +11,7 @@ OrderDetailPage.propTypes = {
     
 };
 
+
 function OrderDetailPage() {
     
     const location = useLocation();
@@ -50,3 +51,7 @@ function OrderDetailPage() {
 }
 
 export default OrderDetailPage;
+
+
+
+

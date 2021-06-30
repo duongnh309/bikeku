@@ -4,7 +4,7 @@ import axios from "axios";
 const jwtToken = localStorage.getItem("token") || "";
 
 const axiosClient = axios.create({
-    baseURL: 'https://localhost:44304/',
+    baseURL: 'http://46.137.226.2:80/',
     headers: {
         'Authorization': `Bearer ${jwtToken}`,
         'Content-Type': 'application/json'

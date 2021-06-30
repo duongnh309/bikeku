@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { findAllInRenderedTree } from 'react-dom/test-utils';
+import { array } from 'yup';
+import reducer from '../../../Checkout/counterSlice';
 
 DefaultBikes.propTypes = {
   defaultBikes: PropTypes.array,
@@ -59,3 +62,9 @@ function DefaultBikes({ defaultBikes,addToCart,viewDetail}) {
 }
 
 export default DefaultBikes;
+
+
+
+
+
+

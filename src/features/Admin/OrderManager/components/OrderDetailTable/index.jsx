@@ -6,12 +6,14 @@ import orderApi from '../../../../../api/orderApi';
 OrderDetailTable.propTypes = {
 
 };
+var x = 2;
 
 function OrderDetailTable({ order }) {
     const history = useHistory();
     const { orderDetails } = order;
     const { enqueueSnackbar } = useSnackbar();
 
+    var x = 1;
     const handleConfirm = async (orderId) => {
         try {
             (await orderApi.confirm(orderId))
@@ -26,6 +28,8 @@ function OrderDetailTable({ order }) {
     const handleCancel = ()=>{
         history.replace('/admin/orders')
     }
+    
+
     
     return (
         <div>
@@ -74,5 +78,5 @@ function OrderDetailTable({ order }) {
         </div>
     );
 }
-
+console.log(x);
 export default OrderDetailTable;

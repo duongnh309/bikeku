@@ -28,6 +28,7 @@ function Login(props) {
             const action = login(values);
             const resultAction = await dispatch(action);
             const user = unwrapResult(resultAction);
+            console.log(user);
             //
             if (user.role[0] === "Admin") {
                 history.push("/admin/accounts");
